@@ -23,7 +23,7 @@ void tekEten()
 			iprintf("\x1b[13;5HDenboragailua geldirik");
 
 		}
-		iprintf("\x1b[17;5HSakatutako tekla: %d \n", SakatutakoTekla());
+		iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
 	//}
 }
 

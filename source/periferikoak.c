@@ -2,7 +2,7 @@
 periferikoak.c
 -------------------------------------*/
 
-#include <nds.h>
+#include <nds.h>		
 #include <stdio.h>
 #include "definizioak.h"
 

@@ -21,6 +21,8 @@ void jokoa01()
 	//aldagai baten definizioa
 	int i = 50;
 	int tekla = 0;
+
+	int kasilaX = 100, kasilaY = 100;
 	
 	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
 													//Aldagai baten idatzi nahi izanez gero, %d komatxoen barruan eta 
@@ -42,7 +44,7 @@ void jokoa01()
 	DenbEtenBaimendu();
 	etenZerbErrutEzarri();
 	
-	erakutsiAtea();
+	erakutsiTaula();
 //Inkesta egin behar da. SELECT tekla sakatzean 
 //Egoera aldatu eta programa bukatu
 	while(EGOERA != BUKATU)
@@ -51,15 +53,19 @@ void jokoa01()
 		iprintf("\x1b[0;0H01234567890123456789012345678901");
 		iprintf("\x1b[4;0H     Pantailan x koord: %d  ", PANT_DAT.px);
 		iprintf("\x1b[5;0H     Pantailan y koord: %d  ", PANT_DAT.py);
-		//iprintf("\x1b[15;2HSakatutako Tekla: %d", EGOERA);
-		/*if (EGOERA == L)
+		if ((15 < PANT_DAT.px && PANT_DAT.px < 175) &&
+		 (15 < PANT_DAT.py && PANT_DAT.py < 175))
 		{
-			erakutsiAtea();
+			kasilaX = ((PANT_DAT.px - 16) - (PANT_DAT.px - 16) % 10) / 10;
+			kasilaY = ((PANT_DAT.py - 16) - (PANT_DAT.py - 16) % 10) / 10;
+			iprintf("\x1b[7;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);			
 		}
-		if (EGOERA == R)
+		if ((kasilaX < 16 && kasilaY < 16) && 
+			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
 		{
-			erakutsiAteaIrekita();
-		}*/
+			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
+			//ebatzi(kasilaX, kasilaY);
+		}
 	}
 
 }
