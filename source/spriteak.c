@@ -10,7 +10,7 @@ adibide batean oinarrituta.
 #include "spriteak.h"
 #include "definizioak.h"
 
-u16 * gfxhasiera; //
+u16 * gfxhasiera;
 u16 * gfxaukera;
 u16 * gfxbandera;
 u16 * gfxhutsa;
@@ -23,6 +23,7 @@ u16 * gfxbost;
 u16 * gfxsei;
 u16 * gfxzazpi;
 u16 * gfxzortzi;
+u16 * gfxeee;
 
 
 /* Pantailan erakutsi nahi den sprite bakoitzeko memoria erreserbatu.*/
@@ -327,8 +328,11 @@ void spriteakMemorianGorde()
 {
 	//16*16ko spriteentzako
 	for(int i = 0; i < 16 * 16 / 2; i++) 
-	{	
+	{
 		gfxhasiera[i] = hasiera[i*2] | (hasiera[(i*2)+1]<<8);
+	}
+	for(int i = 0; i < 16 * 16 / 2; i++) 
+	{
 		gfxaukera[i] = aukera[i*2] | (aukera[(i*2)+1]<<8);
 	}
 	//32*32ko spriteentzako
@@ -397,6 +401,7 @@ void erakutsiAukera(int indizea, int x, int y)
 		false	//apply mosaic
 		); 
 	oamUpdate(&oamMain);  
+	iprintf("\x1b[12;0H     Aukera ezarrita.");
 }
 
 void ezabatuAukera(int indizea, int x, int y)

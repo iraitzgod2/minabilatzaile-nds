@@ -12,12 +12,15 @@ adibide batean oinarrituta.
 
 #include "grafikoak.h"		
 #include "definizioak.h"
+#include "spriteak.h"
+#include "jokoa01.h"
 
 
 //---------------------------------------------------------------------------------
 int main(void) {
 //---------------------------------------------------------------------------------
 
+	HasieratuGrafikoakSpriteak();
 	GrafikoakHasieratu();
 	EtenakBaimendu();
 	

@@ -10,6 +10,7 @@ adibide batean oinarrituta.
 #include <stdlib.h>		//c-ko liburutegi estandarra memoria erreserbak eta zenbaki konbertsioak egiteko
 #include <unistd.h>		//Sistema eragileen arteko konpatibilitatea ziurtatzeko liburutegia
 #include "grafikoak.h"
+#include "spriteak.h"
 
 
 void hasieratuBideoa() {
@@ -109,3 +110,26 @@ void GrafikoakHasieratu()
 	consoleDemoInit(); //Goiko pantaila testua erakusteko eta beheko irudiak erakusteko erabiliko da.
 }
 
+
+//************************************************
+//Spriteak
+//************************************************
+
+/* Spritentzako memoria hasieratu.*/
+void initSpriteMem() {
+
+    oamInit(&oamMain, SpriteMapping_1D_32, false);
+    oamInit(&oamSub, SpriteMapping_1D_32, false);
+}
+
+
+
+void HasieratuGrafikoakSpriteak()
+{
+    GrafikoakHasieratu();
+    hasieratuFondoak();
+    initSpriteMem();
+    memoriaErreserbatu();
+    paletaNagusiaEzarri();
+    spriteakMemorianGorde();
+}

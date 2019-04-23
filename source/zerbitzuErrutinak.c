@@ -6,6 +6,8 @@ zerbitzuErrutiank.c
 #include <stdio.h>
 #include "definizioak.h"
 #include "periferikoak.h"
+#include "fondoak.h"
+#include "spriteak.h"
 
 int EGOERA=HASTEKO;
 
