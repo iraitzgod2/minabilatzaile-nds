@@ -30,16 +30,16 @@ touchPosition PANT_DAT;
 
 // Teklei izena eman diegu zenbakiak nahasgarriak izan daitezkeelako
 
-#define A			0 
-#define B			1
+#define A				0 
+#define B				1
 #define SELECT			2 
 #define START			3
 #define ESKUBI			4 
 #define EZKER			5
 #define GORA			6 
 #define BEHERA			7
-#define R			8 
-#define L			9
+#define R				8 
+#define L				9
 
 #define HASTEKO			0
 #define KONTATZEN		1

@@ -106,7 +106,7 @@ void GrafikoakHasieratu()
 	powerOn(POWER_ALL_2D);
     lcdMainOnBottom();
     hasieratuBideoa();
-    hasieratuFondoak();
+    //hasieratuFondoak();
 	consoleDemoInit(); //Goiko pantaila testua erakusteko eta beheko irudiak erakusteko erabiliko da.
 }
 

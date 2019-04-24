@@ -25,6 +25,8 @@ void jokoa01()
 
 	int kasilaX = 100, kasilaY = 100;
 	int kasilaPX = 16, kasilaPY = 16;
+
+	EGOERA = HASTEKO;
 	
 	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
 													//Aldagai baten idatzi nahi izanez gero, %d komatxoen barruan eta 
@@ -71,7 +73,7 @@ void jokoa01()
 		{
 			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
-			erakutsiAukera(0, kasilaPX, kasilaPY);
+			erakutsiAukera(3, kasilaPX, kasilaPY);
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}

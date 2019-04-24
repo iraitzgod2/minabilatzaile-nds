@@ -32,6 +32,20 @@ void memoriaErreserbatu()
 	/* Pantaila nagusian gehitu nahi den sprite bakoitzarentzako horrelako bat egin behar da. */
 	gfxhasiera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxaukera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxhasiera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxaukera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxbandera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxhutsa = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxmina = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxbat = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxbi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxhiru = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxlau = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxbost = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxsei = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxzazpi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxzortzi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	gfxeee = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 }
 
 /* Pixel bakoitzak har ditzakeen 256 balioetako bakoitzari kolore bat esleitu PANTAILA NAGUSIAN. 0 balioa gardena da 
@@ -330,9 +344,6 @@ void spriteakMemorianGorde()
 	for(int i = 0; i < 16 * 16 / 2; i++) 
 	{
 		gfxhasiera[i] = hasiera[i*2] | (hasiera[(i*2)+1]<<8);
-	}
-	for(int i = 0; i < 16 * 16 / 2; i++) 
-	{
 		gfxaukera[i] = aukera[i*2] | (aukera[(i*2)+1]<<8);
 	}
 	//32*32ko spriteentzako
@@ -400,8 +411,7 @@ void erakutsiAukera(int indizea, int x, int y)
 		false, false, //vflip, hflip
 		false	//apply mosaic
 		); 
-	oamUpdate(&oamMain);  
-	iprintf("\x1b[12;0H     Aukera ezarrita.");
+	oamUpdate(&oamMain);
 }
 
 void ezabatuAukera(int indizea, int x, int y)
@@ -411,7 +421,7 @@ void ezabatuAukera(int indizea, int x, int y)
 		x, y,   //x and y pixle location of the sprite
 		0,                    //priority, lower renders last (on top)
 		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32,     
+		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
 		gfxaukera,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
