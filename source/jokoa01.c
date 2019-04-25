@@ -74,7 +74,7 @@ void jokoa01()
 		{
 			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
-			erakutsiAukera(3, kasilaPX, kasilaPY);
+			erakutsiBandera(3, kasilaPX, kasilaPY);
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}

@@ -345,6 +345,7 @@ void spriteakMemorianGorde()
 	{
 		gfxhasiera[i] = hasiera[i*2] | (hasiera[(i*2)+1]<<8);
 		gfxaukera[i] = aukera[i*2] | (aukera[(i*2)+1]<<8);
+		gfxbandera[i] = bandera[i*2] | (bandera[(i*2)+1]<<8);
 	}
 	//32*32ko spriteentzako
 /*	for(i = 0; i < 32 * 32 / 2; i++) 
@@ -424,6 +425,44 @@ void ezabatuAukera(int indizea, int x, int y)
 		SpriteSize_16x16,     
 		SpriteColorFormat_256Color, 
 		gfxaukera,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiBandera(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbandera,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuBandera(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbandera,//+16*16/2,                  //pointer to the loaded graphics
 		-1,                  //sprite rotation data  
 		false,               //double the size when rotating?
 		true,			//hide the sprite?

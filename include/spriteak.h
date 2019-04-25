@@ -30,3 +30,6 @@ extern void ezabatuHasiera(int indizea, int x, int y);
 
 extern void erakutsiAukera(int indizea, int x, int y);
 extern void ezabatuAukera(int indizea, int x, int y);
+
+extern void erakutsiBandera(int indizea, int x, int y);
+extern void ezabatuBandera(int indizea, int x, int y);
