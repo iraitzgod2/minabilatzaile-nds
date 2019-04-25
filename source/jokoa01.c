@@ -58,9 +58,10 @@ void jokoa01()
 		iprintf("\x1b[4;0H     Pantailan x koord: %d  ", PANT_DAT.px);
 		iprintf("\x1b[5;0H     Pantailan y koord: %d  ", PANT_DAT.py);
 		
-		if ((15 < PANT_DAT.px && PANT_DAT.px < 175) &&
-		 (15 < PANT_DAT.py && PANT_DAT.py < 175))
+		if ((15 < PANT_DAT.px && PANT_DAT.px < 176) &&
+		 (15 < PANT_DAT.py && PANT_DAT.py < 176))
 		{
+			EGOERA = KONTATZEN;
 			kasilaX = (PANT_DAT.px - 16) / 16;
 			kasilaY = (PANT_DAT.py - 16) / 16;
 			kasilaPX = PANT_DAT.px - (PANT_DAT.px % 16);

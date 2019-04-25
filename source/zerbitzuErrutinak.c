@@ -8,6 +8,7 @@ zerbitzuErrutiank.c
 #include "periferikoak.h"
 #include "fondoak.h"
 #include "spriteak.h"
+#include "zerbitzuErrutinak.h"
 
 int EGOERA=HASTEKO;
 
@@ -15,9 +16,8 @@ void tekEten()
 {
 	//if (EGOERA == HASTEKO)
 	//{	
-		if (SakatutakoTekla() == A && EGOERA != KONTATZEN)
+		if (EGOERA == KONTATZEN)
 		{
-			EGOERA = KONTATZEN;
 			ErlojuaMartxanJarri();
 		} else {
 			EGOERA = HASTEKO;
@@ -38,12 +38,12 @@ void tenpEten()
 	{
 		iprintf("\x1b[13;5HDenboragailua martxan");
 		tik++;
-		if (tik==5)
+		if (tik==3)
 		{
 			seg++;
 			iprintf("\x1b[14;5HPasa diren segunduak: %d ", seg);
 			tik=0;
-		}
+		}		
 	}
 }
 
