@@ -32,8 +32,6 @@ void memoriaErreserbatu()
 	/* Pantaila nagusian gehitu nahi den sprite bakoitzarentzako horrelako bat egin behar da. */
 	gfxhasiera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxaukera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxhasiera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxaukera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxbandera = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxhutsa = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxmina = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
@@ -346,6 +344,16 @@ void spriteakMemorianGorde()
 		gfxhasiera[i] = hasiera[i*2] | (hasiera[(i*2)+1]<<8);
 		gfxaukera[i] = aukera[i*2] | (aukera[(i*2)+1]<<8);
 		gfxbandera[i] = bandera[i*2] | (bandera[(i*2)+1]<<8);
+		gfxhutsa[i] = hutsa[i*2] | (hutsa[(i*2)+1]<<8);
+		gfxmina[i] = mina[i*2] | (mina[(i*2)+1]<<8);
+		gfxbat[i] = bat[i*2] | (bat[(i*2)+1]<<8);
+		gfxbi[i] = bi[i*2] | (bi[(i*2)+1]<<8);
+		gfxhiru[i] = hiru[i*2] | (hiru[(i*2)+1]<<8);
+		gfxlau[i] = lau[i*2] | (lau[(i*2)+1]<<8);
+		gfxbost[i] = bost[i*2] | (bost[(i*2)+1]<<8);
+		gfxsei[i] = sei[i*2] | (sei[(i*2)+1]<<8);
+		gfxzazpi[i] = zazpi[i*2] | (zazpi[(i*2)+1]<<8);
+		gfxzortzi[i] = zortzi[i*2] | (zortzi[(i*2)+1]<<8);
 	}
 	//32*32ko spriteentzako
 /*	for(i = 0; i < 32 * 32 / 2; i++) 
@@ -472,3 +480,382 @@ void ezabatuBandera(int indizea, int x, int y)
 	oamUpdate(&oamMain); 
 }
 
+void erakutsiHutsa(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxhutsa,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuHutsa(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxhutsa,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiMina(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmina,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuMina(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxmina,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiBat(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbat,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuBat(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbat,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiBai(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuBi(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiHiru(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxhiru,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuHiru(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxhiru,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiLau(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxlau,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuLau(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxlau,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiBost(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbost,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuBost(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxbost,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiSei(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxsei,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuSei(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxsei,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiZazpi(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxzazpi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuZazpi(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxzazpi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}
+
+void erakutsiZortzi(int indizea, int x, int y)
+{ 
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxzortzi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain);
+}
+
+void ezabatuZortzi(int indizea, int x, int y)
+{
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_16x16,     
+		SpriteColorFormat_256Color, 
+		gfxzortzi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		true,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		); 
+	oamUpdate(&oamMain); 
+}

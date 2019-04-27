@@ -16,16 +16,13 @@ adibide batean oinarrituta.
 #include "fondoak.h"
 #include "spriteak.h"
 
-
 void jokoa01()
 {	
 	//aldagai baten definizioa
 	int i = 50;
 	int tekla = 0;
-
 	int kasilaX = 100, kasilaY = 100;
 	int kasilaPX = 16, kasilaPY = 16;
-
 	EGOERA = HASTEKO;
 	
 	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
@@ -42,7 +39,7 @@ void jokoa01()
 	// Etenen zerbitzu errutinak ezarri behar dira.
 	//***************************************************************************************//
 	EtenakBaimendu();
-	konfiguratuTeklatua(0x4003);
+	konfiguratuTeklatua(0x40F3);
 	konfiguratuTenporizadorea(32764, 0xC3);
 	TekEtenBaimendu();
 	DenbEtenBaimendu();
@@ -52,7 +49,7 @@ void jokoa01()
 //Inkesta egin behar da. SELECT tekla sakatzean 
 //Egoera aldatu eta programa bukatu
 	while(EGOERA != BUKATU)
-	{
+	{	
 		touchRead(&PANT_DAT);
 		iprintf("\x1b[0;0H01234567890123456789012345678901");
 		iprintf("\x1b[4;0H     Pantailan x koord: %d  ", PANT_DAT.px);
@@ -74,7 +71,7 @@ void jokoa01()
 		{
 			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
-			erakutsiBandera(3, kasilaPX, kasilaPY);
+			erakutsiAukera(3, kasilaPX, kasilaPY);
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}

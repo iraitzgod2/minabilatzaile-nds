@@ -33,3 +33,33 @@ extern void ezabatuAukera(int indizea, int x, int y);
 
 extern void erakutsiBandera(int indizea, int x, int y);
 extern void ezabatuBandera(int indizea, int x, int y);
+
+extern void erakutsiHutsa(int indizea, int x, int y);
+extern void ezabatuHutsa(int indizea, int x, int y);
+
+extern void erakutsiMina(int indizea, int x, int y);
+extern void ezabatuMina(int indizea, int x, int y);
+
+extern void erakutsiBat(int indizea, int x, int y);
+extern void ezabatuBat(int indizea, int x, int y);
+
+extern void erakutsiBi(int indizea, int x, int y);
+extern void ezabatuBi(int indizea, int x, int y);
+
+extern void erakutsiHiru(int indizea, int x, int y);
+extern void ezabatuHiru(int indizea, int x, int y);
+
+extern void erakutsiLau(int indizea, int x, int y);
+extern void ezabatuLau(int indizea, int x, int y);
+
+extern void erakutsiBost(int indizea, int x, int y);
+extern void ezabatuBost(int indizea, int x, int y);
+
+extern void erakutsiSei(int indizea, int x, int y);
+extern void ezabatuSei(int indizea, int x, int y);
+
+extern void erakutsiZazpi(int indizea, int x, int y);
+extern void ezabatuZazpi(int indizea, int x, int y);
+
+extern void erakutsiZortzi(int indizea, int x, int y);
+extern void ezabatuZortzi(int indizea, int x, int y);
