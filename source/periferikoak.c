@@ -28,17 +28,17 @@ int SakatutakoTekla()
 	//Gora=6;Behera=7;R=8;L=9;
     switch(~TEKLAK_DAT & 0x03ff)
 	{
-    case 0x0001: return A; //A
-    case 0x0002: return B;
-    case 0x0004: return SELECT;
-    case 0x0008: return START;
-    case 0x0010: return ESKUBI;
-    case 0x0020: return EZKER;
-    case 0x0040: return GORA;
-    case 0x0080: return BEHERA;
-    case 0x0100: return R;
-    case 0x0200: return L;
-    default: return -1;
+    	case 0x0001: return A;
+    	case 0x0002: return B;
+    	case 0x0004: return SELECT;
+    	case 0x0008: return START;
+    	case 0x0010: return ESKUBI;
+    	case 0x0020: return EZKER;
+    	case 0x0040: return GORA;
+    	case 0x0080: return BEHERA;
+    	case 0x0100: return R;
+    	case 0x0200: return L;
+    	default: return -1;
 	}
 
 }
@@ -74,7 +74,7 @@ void TekEtenGalarazi()
 	//Lan hau burutzeko lehenengo eten guztiak galarazi behar dira eta bukaeran baimendu 
 	IME=0;
 	// HEMEN IDATZI BEHAR DUZUE ZUEN KODEA
-	IE= IE & 0xffffefff;
+	IE = IE & 0xffffefff;
 	IME=1;
 }  
 

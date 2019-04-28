@@ -11,7 +11,8 @@ zerbitzuErrutiank.c
 #include "zerbitzuErrutinak.h"
 
 int EGOERA=HASTEKO;
-int kasilaPX = 16, kasilaPY = 16;
+int kasilaX, kasilaY;
+int kasilaPX, kasilaPY;
 void tekEten()
 {
 	//if (EGOERA == HASTEKO)

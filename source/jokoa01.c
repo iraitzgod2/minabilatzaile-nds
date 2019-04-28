@@ -21,8 +21,12 @@ void jokoa01()
 	//aldagai baten definizioa
 	int i = 50;
 	int tekla = 0;
-	int kasilaX = 100, kasilaY = 100;
-	int kasilaPX = 16, kasilaPY = 16;
+
+	kasilaX = 100;
+	kasilaY = 100;
+	kasilaPX = 16;
+	kasilaPY = 16;
+	
 	EGOERA = HASTEKO;
 	
 	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
@@ -46,6 +50,7 @@ void jokoa01()
 	etenZerbErrutEzarri();
 	
 	erakutsiTaula();
+	erakutsiAukera(2, kasilaPX, kasilaPY);
 //Inkesta egin behar da. SELECT tekla sakatzean 
 //Egoera aldatu eta programa bukatu
 	while(EGOERA != BUKATU)
@@ -71,7 +76,7 @@ void jokoa01()
 		{
 			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
-			erakutsiAukera(3, kasilaPX, kasilaPY);
+			erakutsiAukera(2, kasilaPX, kasilaPY);
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}

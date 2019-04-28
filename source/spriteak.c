@@ -594,7 +594,7 @@ void ezabatuBat(int indizea, int x, int y)
 	oamUpdate(&oamMain); 
 }
 
-void erakutsiBai(int indizea, int x, int y)
+void erakutsiBi(int indizea, int x, int y)
 { 
 	oamSet(&oamMain, //main graphics engine context
 		indizea,           //oam index (0 to 127)  
