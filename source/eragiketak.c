@@ -40,19 +40,19 @@ void minakAusazJarri()
 	!taula[i][j].minaDu ? taula[i][j].minaDu = 1 : minakAusazJarri();
 }
 
-void kontatuOndokoMinak(int x, int y)
+void kontatuOndokoMinak(int m, int n)
 {
 	short unsigned int kont = 0;
 
-	if (!taula[x][y].minaDu)
+	if (!taula[m][n].minaDu)
 	{
 		for (int i = -1; i <= 1; i++) {
 		for (int j = -1; j <= 1; j++) {
-			if (taula[x+i][y+j].minaDu) {kont++;}
+			if (taula[m+i][n+j].minaDu) {kont++;}
 		}}
 	}
 
-	taula[x][y].zenbatMinaOndoan = kont;
+	taula[m][n].zenbatMinaOndoan = kont;
 }
 // --------------------------------------------------------
 
@@ -88,6 +88,24 @@ void taulaNagusiaEzarri()
 	// Taulako kanpoaldeko kasila guztiei dagozkien zenbakiak ezarri
 	// Amaitzeke
 }
+
+void hautatu(int m, int n)
+{
+	static int aurM = 0;
+	static int aurN = 0;
+
+	taula[aurM][aurN].hautatuta = 0;
+	taula[m][n].hautatuta = 1;
+
+	aurM = m;
+	aurN = n;
+}
+
+int hautatuta(int m, int n)
+{
+	return taula[m][n].hautatuta;
+}
+
 
 
 

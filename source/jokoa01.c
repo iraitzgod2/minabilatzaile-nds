@@ -16,11 +16,15 @@ adibide batean oinarrituta.
 #include "fondoak.h"
 #include "spriteak.h"
 
+#include "eragiketak.h"
+
 void jokoa01()
 {	
 	//aldagai baten definizioa
 	int i = 50;
 	int tekla = 0;
+
+	int aurrekoX = 10, aurrekoY = 10;
 
 	kasilaX = 100;
 	kasilaY = 100;
@@ -49,6 +53,7 @@ void jokoa01()
 	DenbEtenBaimendu();
 	etenZerbErrutEzarri();
 	
+	taulaNagusiaEzarri();
 	erakutsiTaula();
 	erakutsiAukera(2, kasilaPX, kasilaPY);
 //Inkesta egin behar da. SELECT tekla sakatzean 
@@ -71,12 +76,18 @@ void jokoa01()
 			iprintf("\x1b[7;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
 		}
 		
-		if ((kasilaX < 16 && kasilaY < 16) && 
+		if ((kasilaX < 10 && kasilaY < 10) && 
 			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
 		{
 			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
-			erakutsiAukera(2, kasilaPX, kasilaPY);
+			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
+			{
+				erakutsiAukera(2, kasilaPX, kasilaPY);
+				hautatu(kasilaX, kasilaY);
+				aurrekoX = kasilaX;
+				aurrekoY = kasilaY;
+			}
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}
