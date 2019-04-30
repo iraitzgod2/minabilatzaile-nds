@@ -7,6 +7,7 @@ adibide batean oinarrituta.
 #include <stdio.h>		//c-ko liburutegi estandarra sarrera eta irteerako funtzioak definitzen dituena
 #include <stdlib.h>		//c-ko liburutegi estandarra memoria erreserbak eta zenbaki konbertsioak egiteko
 #include <unistd.h>		//Sistema eragileen arteko konpatibilitatea ziurtatzeko liburutegia
+#include <time.h>		//Ausazko taula sortzeko liburutegia
 
 //Geuk garatutako fitxategiak
 	
@@ -53,17 +54,22 @@ void jokoa01()
 	DenbEtenBaimendu();
 	etenZerbErrutEzarri();
 	
+	srand(time(0)); // Partida bakoitzean taula ezberdina lortzeko
 	taulaNagusiaEzarri();
 	erakutsiTaula();
 	erakutsiAukera(2, kasilaPX, kasilaPY);
+
+	idatziPantailan(); // Taulako zenbakiak karaktereetan
+	erakutsiDena();
 //Inkesta egin behar da. SELECT tekla sakatzean 
 //Egoera aldatu eta programa bukatu
 	while(EGOERA != BUKATU)
 	{	
 		touchRead(&PANT_DAT);
-		iprintf("\x1b[0;0H01234567890123456789012345678901");
-		iprintf("\x1b[4;0H     Pantailan x koord: %d  ", PANT_DAT.px);
-		iprintf("\x1b[5;0H     Pantailan y koord: %d  ", PANT_DAT.py);
+		//iprintf("\x1b[10;0H01234567890123456789012345678901");
+		iprintf("\x1b[10;0H--------------------------------");
+		iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
+		iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
 		
 		if ((15 < PANT_DAT.px && PANT_DAT.px < 176) &&
 		 (15 < PANT_DAT.py && PANT_DAT.py < 176))
@@ -73,14 +79,15 @@ void jokoa01()
 			kasilaY = (PANT_DAT.py - 16) / 16;
 			kasilaPX = PANT_DAT.px - (PANT_DAT.px % 16);
 			kasilaPY = PANT_DAT.py - (PANT_DAT.py % 16);
-			iprintf("\x1b[7;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
+			iprintf("\x1b[17;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
 		}
 		
 		if ((kasilaX < 10 && kasilaY < 10) && 
 			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
 		{
-			iprintf("\x1b[9;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
-			iprintf("\x1b[10;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
+			erakutsiDena();
+			iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
+			iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
 			{
 				erakutsiAukera(2, kasilaPX, kasilaPY);

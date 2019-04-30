@@ -52,7 +52,7 @@ void tekEten()
 			iprintf("\x1b[13;5HDenboragailua geldirik");
 
 		}
-		iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
+		iprintf("\x1b[18;5HSakatutako tekla: %d \nds", SakatutakoTekla());
 	//}
 }
 
@@ -68,7 +68,7 @@ void tenpEten()
 		if (tik==3)
 		{
 			seg++;
-			iprintf("\x1b[14;5HPasa diren segunduak: %d ", seg);
+			iprintf("\x1b[11;5HPasa diren segunduak: %d ", seg);
 			tik=0;
 		}		
 	}

@@ -33,6 +33,7 @@ struct Kasila taula[err][zut];
 
 // Funtzio hauek fitxategi honetan erabiltzen dira bakarrik
 // --------------------------------------------------------
+
 void minakAusazJarri()
 {
 	int i = rand() % err;
@@ -48,7 +49,10 @@ void kontatuOndokoMinak(int m, int n)
 	{
 		for (int i = -1; i <= 1; i++) {
 		for (int j = -1; j <= 1; j++) {
-			if (taula[m+i][n+j].minaDu) {kont++;}
+			if (((-1 < (m+i) && (m+i) < err) && 
+				(-1 < (n+j) && (n+j) < zut)) &&
+				(taula[m+i][n+j].minaDu)) 
+				{kont++;}
 		}}
 	}
 
@@ -67,6 +71,7 @@ void taulaNagusiaEzarri()
 			taula[i][j].minaDu = 0;
 			taula[i][j].banderaDu = 0;
 			taula[i][j].ebatzita = 0;
+			taula[i][j].zenbatMinaOndoan = 0;
 		}
 	}
 
@@ -76,17 +81,15 @@ void taulaNagusiaEzarri()
 		minakAusazJarri();
 	}
 
-	// Taulako barrualdeko kasila guztiei dagozkien zenbakiak ezarri
-	for (int i = 1; i < err - 1; i++)
+	// Taulako kasila guztiei dagozkien zenbakiak ezarri
+	for (int i = 0; i < err; i++)
 	{
-		for (int j = 1; j < err - 1; j++)
+		for (int j = 0; j < err; j++)
 		{
 			kontatuOndokoMinak(i, j);
 		}
 	}
 
-	// Taulako kanpoaldeko kasila guztiei dagozkien zenbakiak ezarri
-	// Amaitzeke
 }
 
 void hautatu(int m, int n)
@@ -106,6 +109,58 @@ int hautatuta(int m, int n)
 	return taula[m][n].hautatuta;
 }
 
+void idatziPantailan()
+{
+	for (int i = 0; i < err; i++){
+	for (int j = 0; j < zut; j++){
+		if (taula[i][j].minaDu)
+		{
+			iprintf("\x1b[%d;%dH*", j, i);
+		}
+		else
+		{
+			iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
+		}
+	}}
+}
 
+void erakutsi(int m, int n)
+{
+	static short unsigned ind = 0;
+	if (taula[(m-16)/16][(n-16)/16].minaDu)
+	{
+		erakutsiMina(ind, m, n);
+	}
+	else
+	{
+		switch (taula[(m-16)/16][(n-16)/16].zenbatMinaOndoan)
+		{
+			case 1: erakutsiBat(ind, m, n);
+				break;
+			case 2: erakutsiBi(ind, m, n);
+				break;
+			case 3: erakutsiHiru(ind, m, n);
+				break;
+			case 4: erakutsiLau(ind, m, n);
+				break;
+			case 5: erakutsiBost(ind, m, n);
+				break;
+			case 6: erakutsiSei(ind, m, n);
+				break;
+			case 7: erakutsiZazpi(ind, m, n);
+				break;
+			case 8: erakutsiZortzi(ind, m, n);
+				break;
+		}
+	}
+	ind++;
+}
 
-
+void erakutsiDena()
+{
+	for (int i = 10; i < 163; i++){
+	for (int j = 10; j < 163; j++){
+		if (i % 16 == 0 && j % 16 == 0)
+			erakutsi(i, j);
+	}}
+}
