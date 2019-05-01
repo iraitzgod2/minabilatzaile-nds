@@ -82,7 +82,6 @@ void jokoa01()
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
 			{
 				erakutsiAukera(2, kasilaPX, kasilaPY);
-				hautatu(kasilaX, kasilaY);
 				aurrekoX = kasilaX;
 				aurrekoY = kasilaY;
 			}

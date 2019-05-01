@@ -89,7 +89,6 @@ void taulaNagusiaEzarri()
 			kontatuOndokoMinak(i, j);
 		}
 	}
-
 }
 
 void hautatu(int m, int n)

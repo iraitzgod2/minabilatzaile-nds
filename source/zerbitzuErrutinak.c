@@ -35,13 +35,12 @@ void tekEten()
 		kasilaX = (kasilaPX / 16) - 1;
 		kasilaY = (kasilaPY / 16) - 1;
 		
-		hautatu(kasilaX, kasilaY);
 		erakutsiAukera(2, kasilaPX, kasilaPY);
 		
 		if (SakatutakoTekla()==A) {
 			//ezabatuAukera(2, kasilaPX, kasilaPY);
-			//erakutsiZazpi(5, kasilaPX, kasilaPY);
 			erakutsiDena();
+		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		} else if (SakatutakoTekla()==B) {
 			ezabatuAukera(2, kasilaPX, kasilaPY);
 			erakutsiBandera(6, kasilaPX, kasilaPY);
