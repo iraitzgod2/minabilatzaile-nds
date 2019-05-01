@@ -25,7 +25,7 @@ void jokoa01()
 	int i = 50;
 	int tekla = 0;
 
-	int aurrekoX = 10, aurrekoY = 10;
+	int aurrekoX = 10, aurrekoY = 10; // Fitxategi honetan bakarrik erabiltzen dira
 
 	kasilaX = 100;
 	kasilaY = 100;
@@ -40,33 +40,25 @@ void jokoa01()
 	iprintf("\x1b[23;5HAldagai proba. Balioa=%d", i);
 
 	//***************************************************************************************//
-	// Etenak baimendu behar dira.
-	// Teklatua konfiguratu behar da.	
-	// Tenporizadorea konfiguratu behar da.
-	// Teklatuaren etenak baimendu behar dira.
-	// Tenporizadorearen etenak baimendu behar dira.
-	// Etenen zerbitzu errutinak ezarri behar dira.
+	EtenakBaimendu();						// Etenak baimendu behar dira.
+	konfiguratuTeklatua(0x40F3);			// Teklatua konfiguratu behar da.	
+	konfiguratuTenporizadorea(32764, 0xC3);	// Tenporizadorea konfiguratu behar da.
+	TekEtenBaimendu();						// Teklatuaren etenak baimendu behar dira.
+	DenbEtenBaimendu();						// Tenporizadorearen etenak baimendu behar dira.
+	etenZerbErrutEzarri();					// Etenen zerbitzu errutinak ezarri behar dira.
 	//***************************************************************************************//
-	EtenakBaimendu();
-	konfiguratuTeklatua(0x40F3);
-	konfiguratuTenporizadorea(32764, 0xC3);
-	TekEtenBaimendu();
-	DenbEtenBaimendu();
-	etenZerbErrutEzarri();
 	
 	srand(time(0)); // Partida bakoitzean taula ezberdina lortzeko
 	taulaNagusiaEzarri();
-	erakutsiTaula();
-	erakutsiAukera(2, kasilaPX, kasilaPY);
+	erakutsiTaula(); // Fondoa
+	erakutsiAukera(2, kasilaPX, kasilaPY); // Lehenengo posizioa (0, 0)
 
-	idatziPantailan(); // Taulako zenbakiak karaktereetan
-	erakutsiDena();
+	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 //Inkesta egin behar da. SELECT tekla sakatzean 
 //Egoera aldatu eta programa bukatu
 	while(EGOERA != BUKATU)
 	{	
 		touchRead(&PANT_DAT);
-		//iprintf("\x1b[10;0H01234567890123456789012345678901");
 		iprintf("\x1b[10;0H--------------------------------");
 		iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
 		iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
@@ -85,7 +77,6 @@ void jokoa01()
 		if ((kasilaX < 10 && kasilaY < 10) && 
 			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
 		{
-			erakutsiDena();
 			iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)

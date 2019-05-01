@@ -23,7 +23,6 @@ u16 * gfxbost;
 u16 * gfxsei;
 u16 * gfxzazpi;
 u16 * gfxzortzi;
-u16 * gfxeee;
 
 
 /* Pantailan erakutsi nahi den sprite bakoitzeko memoria erreserbatu.*/
@@ -43,27 +42,26 @@ void memoriaErreserbatu()
 	gfxsei = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxzazpi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxzortzi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxeee = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 }
 
 /* Pixel bakoitzak har ditzakeen 256 balioetako bakoitzari kolore bat esleitu PANTAILA NAGUSIAN. 0 balioa gardena da 
    eta definitu gabeko balioak beltzak. SPRITEARI KOLOREAK ESLEITZEKO ALDATU*/
 void paletaNagusiaEzarri()
 {
-	SPRITE_PALETTE[0] = RGB15(255, 255, 255); // Zuria
-	SPRITE_PALETTE[1] = RGB15(0, 0, 255); // Urdina: 1 zenbakiaren kolorea
-	SPRITE_PALETTE[2] = RGB15(0, 128, 0); // Berdea: 2 zenbakiaren kolorea
-	SPRITE_PALETTE[3] = RGB15(255, 0, 0); // Gorria: 3 zenbakiaren kolorea
-	SPRITE_PALETTE[4] = RGB15(0, 0, 128); // Urdin iluna: 4 zenbakiaren kolorea
-	SPRITE_PALETTE[5] = RGB15(128, 0, 0); // Granate: 5 zenbakiaren kolorea
-	SPRITE_PALETTE[6] = RGB15(0, 128, 128); // Esmeralda: 6 zenbakiaren kolorea
-	SPRITE_PALETTE[7] = RGB15(0, 0, 0); // Beltza: 7 zenbakiaren kolorea
-	SPRITE_PALETTE[8] = RGB15(128, 128, 128); // Grisa: 8 zenbakiaren kolorea
-	SPRITE_PALETTE[9] = RGB15(189, 189, 189); // Gris paletak, kasilentzako
-	SPRITE_PALETTE[10] = RGB15(123, 123, 123);
-	SPRITE_PALETTE[11] = RGB15(162, 162, 162);
-	SPRITE_PALETTE[12] = RGB15(238, 238, 238);
-	SPRITE_PALETTE[13] = RGB15(144, 144, 144);
+	SPRITE_PALETTE[0] = RGB15(31, 31, 31); // Zuria
+	SPRITE_PALETTE[1] = RGB15(0, 0, 31); // Urdina: 1 zenbakiaren kolorea
+	SPRITE_PALETTE[2] = RGB15(0, 16, 0); // Berdea: 2 zenbakiaren kolorea
+	SPRITE_PALETTE[3] = RGB15(31, 0, 0); // Gorria: 3 zenbakiaren kolorea
+	SPRITE_PALETTE[4] = RGB15(0, 0, 16); // Urdin iluna: 4 zenbakiaren kolorea
+	SPRITE_PALETTE[5] = RGB15(16, 0, 0); // Granate: 5 zenbakiaren kolorea
+	SPRITE_PALETTE[6] = RGB15(0, 16, 16); // Esmeralda: 6 zenbakiaren kolorea
+//	SPRITE_PALETTE[7] = RGB15(0, 0, 0); // Beltza: 7 zenbakiaren kolorea
+	SPRITE_PALETTE[8] = RGB15(16, 16, 16); // Grisa: 8 zenbakiaren kolorea
+	SPRITE_PALETTE[9] = RGB15(24, 24, 24); // Gris paletak, kasilentzako
+	SPRITE_PALETTE[10] = RGB15(15, 15, 15);
+	SPRITE_PALETTE[11] = RGB15(20, 20, 20);
+	SPRITE_PALETTE[12] = RGB15(30, 30, 30);
+	SPRITE_PALETTE[13] = RGB15(18, 18, 18);
 }
 
 /* 16x16 pixeleko Sprite baten definizioa erronbo bat marrazteko */
