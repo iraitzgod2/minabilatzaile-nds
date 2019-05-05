@@ -19,20 +19,70 @@ adibide batean oinarrituta.
 void jokoa01()
 {	
 	//aldagai baten definizioa
-	int i = 50;
 	int tekla = 0;
+	int kont = 0;
 
 	kasilaX = 100;
 	kasilaY = 100;
-	kasilaPX = 16;
-	kasilaPY = 16;
 	
-	EGOERA = HASTEKO;
-	
-	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
-													//Aldagai baten idatzi nahi izanez gero, %d komatxoen barruan eta 
-													 //komatxoen kanpoan aldagaiaren balioa.
-	iprintf("\x1b[23;5HAldagai proba. Balioa=%d", i);
+
+	while((EGOERA == HASTEKO)){
+		touchRead(&PANT_DAT);
+		iprintf("\x1b[12;8HSakatu 'A' botoia edo ukitu pantaila");
+		erakutsiSarrera();
+		if (!(PANT_DAT.px == 0 && PANT_DAT.py == 0)){
+			EGOERA = MENUA;
+		}
+	}
+	kasilaPX = 24;
+	kasilaPY = 24;
+	erakutsiAukera(20, 24, 24);
+	erakutsiHasiera(21, 24, 88);
+	erakutsiHasiera(22, 24, 152);
+	while((EGOERA == MENUA)){
+		erakutsiZerrenda();
+		touchRead(&PANT_DAT);
+		if ((kasilaPY==24) && 
+			(PANT_DAT.px == 0 && PANT_DAT.py == 0)){
+			erakutsiAukera(20, 24, 24);
+			erakutsiHasiera(21, 24, 88);
+			erakutsiHasiera(22, 24, 152);
+		}
+		if ((kasilaPY==88) && 
+			(PANT_DAT.px == 0 && PANT_DAT.py == 0)){
+			erakutsiHasiera(20, 24, 24);
+			erakutsiAukera(21, 24, 88);
+			erakutsiHasiera(22, 24, 152);
+		}
+		if (kasilaPY==152){
+			erakutsiHasiera(20, 24, 24);
+			erakutsiHasiera(21, 24, 88);
+			erakutsiAukera(22, 24, 152);
+		}
+		if ((55 < PANT_DAT.px && PANT_DAT.px < 239) &&
+		 (15 < PANT_DAT.py && PANT_DAT.py < 48))
+		{
+			EGOERA = JOKOA;
+		}
+		if ((55 < PANT_DAT.px && PANT_DAT.px < 240) &&
+		 (79 < PANT_DAT.py && PANT_DAT.py < 112))
+		{
+			iprintf("\x1b[11;8H                 ");
+			iprintf("\x1b[12;5HKaixo, hauek botoien kontrolak dira");
+			iprintf("\x1b[13;10H              ");
+		}
+		if ((55 < PANT_DAT.px && PANT_DAT.px < 240) &&
+		 (143 < PANT_DAT.py && PANT_DAT.py < 176))
+		{
+			iprintf("\x1b[11;8H                 ");
+			iprintf("\x1b[12;5HKaixo, hauek kredituak dira        ");
+			iprintf("\x1b[13;10H              ");
+		}
+	}
+	ezabatuHasiera(20, 24, 24);
+	ezabatuHasiera(21, 24, 88);
+	ezabatuHasiera(22, 24, 152);
+																													
 
 	//***************************************************************************************//
 	// Etenak baimendu behar dira.
@@ -48,7 +98,6 @@ void jokoa01()
 	TekEtenBaimendu();
 	DenbEtenBaimendu();
 	etenZerbErrutEzarri();
-	
 	erakutsiTaula();
 	erakutsiAukera(2, kasilaPX, kasilaPY);
 //Inkesta egin behar da. SELECT tekla sakatzean 
@@ -63,7 +112,6 @@ void jokoa01()
 		if ((15 < PANT_DAT.px && PANT_DAT.px < 176) &&
 		 (15 < PANT_DAT.py && PANT_DAT.py < 176))
 		{
-			EGOERA = KONTATZEN;
 			kasilaX = (PANT_DAT.px - 16) / 16;
 			kasilaY = (PANT_DAT.py - 16) / 16;
 			kasilaPX = PANT_DAT.px - (PANT_DAT.px % 16);

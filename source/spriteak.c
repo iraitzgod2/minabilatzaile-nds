@@ -23,7 +23,6 @@ u16 * gfxbost;
 u16 * gfxsei;
 u16 * gfxzazpi;
 u16 * gfxzortzi;
-u16 * gfxeee;
 
 
 /* Pantailan erakutsi nahi den sprite bakoitzeko memoria erreserbatu.*/
@@ -43,7 +42,6 @@ void memoriaErreserbatu()
 	gfxsei = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxzazpi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	gfxzortzi = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxeee = oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 }
 
 /* Pixel bakoitzak har ditzakeen 256 balioetako bakoitzari kolore bat esleitu PANTAILA NAGUSIAN. 0 balioa gardena da 
@@ -355,11 +353,6 @@ void spriteakMemorianGorde()
 		gfxzazpi[i] = zazpi[i*2] | (zazpi[(i*2)+1]<<8);
 		gfxzortzi[i] = zortzi[i*2] | (zortzi[(i*2)+1]<<8);
 	}
-	//32*32ko spriteentzako
-/*	for(i = 0; i < 32 * 32 / 2; i++) 
-	{	
-		gfxerronboHandia[i] = erronboHandia[i*2] | (erronboHandia[(i*2)+1]<<8);				
-	}*/
 }
 
 /* Funtzio honek erronbo bat irudikatuko dut pantailako x-y posizioan. Pantailan ateratzea nahi den erronbo 
@@ -859,3 +852,5 @@ void ezabatuZortzi(int indizea, int x, int y)
 		); 
 	oamUpdate(&oamMain); 
 }
+
+

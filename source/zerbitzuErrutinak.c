@@ -15,8 +15,31 @@ int kasilaX, kasilaY;
 int kasilaPX, kasilaPY;
 void tekEten()
 {
-	//if (EGOERA == HASTEKO)
-	//{	
+	if (EGOERA == HASTEKO){
+		if (SakatutakoTekla()==A){
+			EGOERA = MENUA;
+		}
+	}
+	if (EGOERA == MENUA){
+		if (SakatutakoTekla()==BEHERA && kasilaPY==24){
+			kasilaPY += 64;
+		}
+		if (SakatutakoTekla()==BEHERA && kasilaPY==88){
+			kasilaPY += 64;
+		}
+		if (SakatutakoTekla()==GORA && kasilaPY==88){
+			kasilaPY -= 64;
+		}
+		if (SakatutakoTekla()==GORA && kasilaPY==152){
+			kasilaPY -= 64;
+		}
+		if (SakatutakoTekla()==A && kasilaPY==24){
+			EGOERA = JOKOA;
+		}
+	}	
+
+	if (EGOERA == JOKOA)
+	{	
 		if (SakatutakoTekla()==ESKUBI && ((15 < kasilaPX && kasilaPX < 145) && (15 < kasilaPY && kasilaPY < 161))){
 			kasilaPX += 16;
 		}
@@ -41,13 +64,12 @@ void tekEten()
 		{
 			ErlojuaMartxanJarri();
 		} else {
-			EGOERA = HASTEKO;
 			ErlojuaGelditu();
 			iprintf("\x1b[13;5HDenboragailua geldirik");
 
 		}
 		iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
-	//}
+	}
 }
 
 void tenpEten()

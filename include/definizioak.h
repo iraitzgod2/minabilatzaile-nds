@@ -44,6 +44,8 @@ touchPosition PANT_DAT;
 #define HASTEKO			0
 #define KONTATZEN		1
 #define BUKATU			2
+#define MENUA			3
+#define JOKOA			4
 
 extern int EGOERA;
 

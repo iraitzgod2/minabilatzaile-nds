@@ -63,3 +63,4 @@ extern void ezabatuZazpi(int indizea, int x, int y);
 
 extern void erakutsiZortzi(int indizea, int x, int y);
 extern void ezabatuZortzi(int indizea, int x, int y);
+

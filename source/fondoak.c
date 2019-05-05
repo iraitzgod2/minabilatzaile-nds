@@ -16,6 +16,8 @@ automatikoki sortzen dira, konpilatzerako garaian, baina horretarako gogoratu be
 #include "Atea.h"
 #include "AteaIrekita.h"
 #include "Taula.h"
+#include "Sarrera.h"
+#include "Zerrenda.h"
 
 /* irudiak memorian kopiatzeko DMA kanala aukeratu (3.a) */
 static const int DMA_CHANNEL = 3;
@@ -44,4 +46,20 @@ void erakutsiTaula() {
                      TaulaBitmap, /* Automatikoki sortzen den aldagaia */
                      (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
                      TaulaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
+}
+
+void erakutsiSarrera() {
+              
+       dmaCopyHalfWords(DMA_CHANNEL,
+                     SarreraBitmap, /* Automatikoki sortzen den aldagaia */
+                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
+                     SarreraBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
+}
+
+void erakutsiZerrenda() {
+              
+       dmaCopyHalfWords(DMA_CHANNEL,
+                     ZerrendaBitmap, /* Automatikoki sortzen den aldagaia */
+                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
+                     ZerrendaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
 }
