@@ -147,7 +147,7 @@ void erakutsi(int i, int j)
 					// Floodfill algoritmoa
 					for (int a = -16; a <= 16; a += 16){
 					for (int b = -16; b <= 16; b += 16){
-						if (((15 < (i+a) && (j+a) < 176) && 
+						if (((15 < (i+a) && (i+a) < 176) && 
 							(15 < (j+b) && (j+b) < 176)) &&
 							!(a == 0 && b == 0))
 						{
@@ -176,3 +176,7 @@ void erakutsi(int i, int j)
 	}
 }
 
+void banderaJarri(int i, int j)
+{
+
+}
