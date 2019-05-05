@@ -10,7 +10,9 @@ zerbitzuErrutiank.c
 #include "spriteak.h"
 #include "zerbitzuErrutinak.h"
 
-int EGOERA=HASTEKO;
+#include "eragiketak.h"
+
+int EGOERA;
 int kasilaX, kasilaY;
 int kasilaPX, kasilaPY;
 void tekEten()
@@ -52,13 +54,20 @@ void tekEten()
 		if (SakatutakoTekla()==BEHERA && ((15 < kasilaPY && kasilaPY < 145) && (15 < kasilaPX && kasilaPX < 161))){
 			kasilaPY += 16;
 		}
+		
+		kasilaX = (kasilaPX / 16) - 1;
+		kasilaY = (kasilaPY / 16) - 1;
+		
 		erakutsiAukera(2, kasilaPX, kasilaPY);
-		if (SakatutakoTekla()==A){
-			ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsiBat(5, kasilaPX, kasilaPY);
-		}else if (SakatutakoTekla()==B){
-			ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsiBandera(6, kasilaPX, kasilaPY);
+		
+		if (SakatutakoTekla()==A) {
+		//	ezabatuAukera(2, kasilaPX, kasilaPY);
+			erakutsi(kasilaPX, kasilaPY);
+			erakutsiAukera(2, kasilaPX, kasilaPY);
+		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
+		} else if (SakatutakoTekla()==B) {
+			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
+			erakutsiAukera(2, kasilaPX, kasilaPY);
 		}
 		if (EGOERA == KONTATZEN)
 		{
@@ -84,7 +93,7 @@ void tenpEten()
 		if (tik==3)
 		{
 			seg++;
-			iprintf("\x1b[14;5HPasa diren segunduak: %d ", seg);
+			iprintf("\x1b[11;5HPasa diren segunduak: %d ", seg);
 			tik=0;
 		}		
 	}
