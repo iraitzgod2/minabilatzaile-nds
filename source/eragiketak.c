@@ -58,6 +58,24 @@ void kontatuOndokoMinak(int m, int n)
 
 	taula[m][n].zenbatMinaOndoan = kont;
 }
+
+void idatziPantailan()
+{
+	for (int i = 0; i < err; i++) {
+	for (int j = 0; j < zut; j++) {
+		taula[i][j].minaDu ? iprintf("\x1b[%d;%dH*", j, i) : iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
+	}}
+}
+
+void erakutsiDena()
+{
+	for (int i = 10; i < 163; i++){
+	for (int j = 10; j < 163; j++){
+		if (i % 16 == 0 && j % 16 == 0)
+			erakutsi(i, j);
+	}}
+}
+
 // --------------------------------------------------------
 
 void taulaNagusiaEzarri()
@@ -108,60 +126,53 @@ int hautatuta(int m, int n)
 	return taula[m][n].hautatuta;
 }
 
-void idatziPantailan()
-{
-	for (int i = 0; i < err; i++) {
-	for (int j = 0; j < zut; j++) {
-		taula[i][j].minaDu ? iprintf("\x1b[%d;%dH*", j, i) : iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
-	}}
-}
-
-void erakutsi(int m, int n)
+void erakutsi(int i, int j)
 {
 	static short unsigned ind = 0;
-	if (taula[(m-16)/16][(n-16)/16].minaDu)
+	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
+	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
+	if (!taula[m][n].ebatzita)
 	{
-		erakutsiMina(ind, m, n);
-	}
-	else
-	{
-		switch (taula[(m-16)/16][(n-16)/16].zenbatMinaOndoan)
+		ind++;
+		taula[m][n].ebatzita = 1;
+		if (taula[m][n].minaDu)
 		{
-			case 0: erakutsiHutsa(ind, m, n);/*
+			erakutsiMina(ind, i, j);
+		}
+		else
+		{
+			switch (taula[m][n].zenbatMinaOndoan)
+			{
+				case 0: erakutsiHutsa(ind, i, j);
+					// Floodfill algoritmoa
 					for (int a = -16; a <= 16; a += 16){
 					for (int b = -16; b <= 16; b += 16){
-						if (((15 < (m+a) && (n+a) < 176) && 
-							(15 < (m+b) && (n+b) < 176)) &&
+						if (((15 < (i+a) && (j+a) < 176) && 
+							(15 < (j+b) && (j+b) < 176)) &&
 							!(a == 0 && b == 0))
-							erakutsi(m+a, n+b);
-					}}*/
-				break;
-			case 1: erakutsiBat(ind, m, n);
-				break;
-			case 2: erakutsiBi(ind, m, n);
-				break;
-			case 3: erakutsiHiru(ind, m, n);
-				break;
-			case 4: erakutsiLau(ind, m, n);
-				break;
-			case 5: erakutsiBost(ind, m, n);
-				break;
-			case 6: erakutsiSei(ind, m, n);
-				break;
-			case 7: erakutsiZazpi(ind, m, n);
-				break;
-			case 8: erakutsiZortzi(ind, m, n);
-				break;
+						{
+							erakutsi(i+a, j+b);
+						}
+					}}
+					break;
+				case 1: erakutsiBat(ind, i, j);
+					break;
+				case 2: erakutsiBi(ind, i, j);
+					break;
+				case 3: erakutsiHiru(ind, i, j);
+					break;
+				case 4: erakutsiLau(ind, i, j);
+					break;
+				case 5: erakutsiBost(ind, i, j);
+					break;
+				case 6: erakutsiSei(ind, i, j);
+					break;
+				case 7: erakutsiZazpi(ind, i, j);
+					break;
+				case 8: erakutsiZortzi(ind, i, j);
+					break;
+			}
 		}
 	}
-	ind++;
 }
 
-void erakutsiDena()
-{
-	for (int i = 10; i < 163; i++){
-	for (int j = 10; j < 163; j++){
-		if (i % 16 == 0 && j % 16 == 0)
-			erakutsi(i, j);
-	}}
-}
