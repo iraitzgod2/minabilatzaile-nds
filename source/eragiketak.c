@@ -131,7 +131,7 @@ void erakutsi(int i, int j)
 	static short unsigned ind = 0;
 	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
 	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
-	if (!taula[m][n].ebatzita)
+	if (!taula[m][n].ebatzita && !taula[m][n].banderaDu)
 	{
 		ind++;
 		taula[m][n].ebatzita = 1;
@@ -178,5 +178,30 @@ void erakutsi(int i, int j)
 
 void banderaJarri(int i, int j)
 {
+	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
+	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
+	short unsigned int banderaInd = (m + n * 10) + 1; // kasila bakoitzak bere bandera zenbakia du.
+	if (!taula[m][n].ebatzita && !taula[m][n].banderaDu)
+	{
+		taula[m][n].banderaDu = banderaInd;
+		erakutsiBandera(banderaInd, i, j);
+		zenbatBandera++;
+	}
+}
 
+void banderaKendu(int i, int j)
+{
+	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
+	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
+	if (taula[m][n].banderaDu)
+	{
+		ezabatuBandera(taula[m][n].banderaDu, i, j);
+		taula[m][n].banderaDu = 0;
+		zenbatBandera--;
+	}
+}
+
+int banderaDu(int i, int j)
+{
+	return taula[(i-16)/16][(j-16)/16].banderaDu;
 }

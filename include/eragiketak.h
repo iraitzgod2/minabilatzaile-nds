@@ -12,3 +12,6 @@ extern int hautatuta(int m, int n);
 extern void idatziPantailan();
 extern void erakutsi();
 extern void erakutsiDena();
+extern void banderaJarri(int i, int j);
+extern void banderaKendu(int i, int j);
+extern int banderaDu(int i, int j);

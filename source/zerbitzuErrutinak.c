@@ -43,8 +43,8 @@ void tekEten()
 			erakutsiAukera(2, kasilaPX, kasilaPY);
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		} else if (SakatutakoTekla()==B) {
-			ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsiBandera(6, kasilaPX, kasilaPY);
+			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
+			erakutsiAukera(2, kasilaPX, kasilaPY);
 		}
 		if (EGOERA == KONTATZEN)
 		{
