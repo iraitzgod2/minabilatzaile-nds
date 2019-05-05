@@ -27,17 +27,19 @@ void jokoa01()
 
 	int aurrekoX = 10, aurrekoY = 10; // Fitxategi honetan bakarrik erabiltzen dira
 
-	kasilaX = 100;
+	kasilaX = 100; // Taulako kasila (0, 9)
 	kasilaY = 100;
-	kasilaPX = 16;
+	kasilaPX = 16; // Kasilari dagokion pixela (16, 32, 48, 64, ...)
 	kasilaPY = 16;
 	
 	EGOERA = HASTEKO;
 	
+	/*
 	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.
 													//Aldagai baten idatzi nahi izanez gero, %d komatxoen barruan eta 
 													 //komatxoen kanpoan aldagaiaren balioa.
 	iprintf("\x1b[23;5HAldagai proba. Balioa=%d", i);
+	*/
 
 	//***************************************************************************************//
 	EtenakBaimendu();						// Etenak baimendu behar dira.
@@ -64,7 +66,7 @@ void jokoa01()
 		iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
 		
 		if ((15 < PANT_DAT.px && PANT_DAT.px < 176) &&
-		 (15 < PANT_DAT.py && PANT_DAT.py < 176))
+			(15 < PANT_DAT.py && PANT_DAT.py < 176)) // Pantaila ukitzerakoan aldagaiak definitu
 		{
 			EGOERA = KONTATZEN;
 			kasilaX = (PANT_DAT.px - 16) / 16;
@@ -75,7 +77,7 @@ void jokoa01()
 		}
 		
 		if ((kasilaX < 10 && kasilaY < 10) && 
-			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
+			(PANT_DAT.px == 0 && PANT_DAT.py == 0)) // Pantaila ukitzeari uzterakoan
 		{
 			iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
 			iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
@@ -88,6 +90,5 @@ void jokoa01()
 			//ebatzi(kasilaX, kasilaY);
 		}
 	}
-
 }
 

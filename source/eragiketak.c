@@ -110,16 +110,9 @@ int hautatuta(int m, int n)
 
 void idatziPantailan()
 {
-	for (int i = 0; i < err; i++){
-	for (int j = 0; j < zut; j++){
-		if (taula[i][j].minaDu)
-		{
-			iprintf("\x1b[%d;%dH*", j, i);
-		}
-		else
-		{
-			iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
-		}
+	for (int i = 0; i < err; i++) {
+	for (int j = 0; j < zut; j++) {
+		taula[i][j].minaDu ? iprintf("\x1b[%d;%dH*", j, i) : iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
 	}}
 }
 
@@ -134,6 +127,15 @@ void erakutsi(int m, int n)
 	{
 		switch (taula[(m-16)/16][(n-16)/16].zenbatMinaOndoan)
 		{
+			case 0: erakutsiHutsa(ind, m, n);/*
+					for (int a = -16; a <= 16; a += 16){
+					for (int b = -16; b <= 16; b += 16){
+						if (((15 < (m+a) && (n+a) < 176) && 
+							(15 < (m+b) && (n+b) < 176)) &&
+							!(a == 0 && b == 0))
+							erakutsi(m+a, n+b);
+					}}*/
+				break;
 			case 1: erakutsiBat(ind, m, n);
 				break;
 			case 2: erakutsiBi(ind, m, n);

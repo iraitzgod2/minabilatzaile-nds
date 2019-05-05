@@ -38,8 +38,9 @@ void tekEten()
 		erakutsiAukera(2, kasilaPX, kasilaPY);
 		
 		if (SakatutakoTekla()==A) {
-			//ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsiDena();
+		//	ezabatuAukera(2, kasilaPX, kasilaPY);
+			erakutsi(kasilaPX, kasilaPY);
+			erakutsiAukera(2, kasilaPX, kasilaPY);
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		} else if (SakatutakoTekla()==B) {
 			ezabatuAukera(2, kasilaPX, kasilaPY);

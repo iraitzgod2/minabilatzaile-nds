@@ -10,4 +10,5 @@ extern void taulaNagusiaEzarri();
 extern void hautatu(int m, int n);
 extern int hautatuta(int m, int n);
 extern void idatziPantailan();
+extern void erakutsi();
 extern void erakutsiDena();
