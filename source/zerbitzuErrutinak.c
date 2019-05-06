@@ -23,20 +23,50 @@ void tekEten()
 		}
 	}
 	if (EGOERA == MENUA){
-		if (SakatutakoTekla()==BEHERA && kasilaPY==24){
-			kasilaPY += 64;
-		}
 		if (SakatutakoTekla()==BEHERA && kasilaPY==88){
-			kasilaPY += 64;
+			kasilaPY = 152;
+		}
+		if (SakatutakoTekla()==BEHERA && kasilaPY==24){
+			kasilaPY = 88;
 		}
 		if (SakatutakoTekla()==GORA && kasilaPY==88){
-			kasilaPY -= 64;
+			kasilaPY = 24;
 		}
 		if (SakatutakoTekla()==GORA && kasilaPY==152){
-			kasilaPY -= 64;
+			kasilaPY = 88;
 		}
 		if (SakatutakoTekla()==A && kasilaPY==24){
 			EGOERA = JOKOA;
+		}
+		if (SakatutakoTekla()==A && kasilaPY==88){
+			iprintf("\x1b[4;7HBOTOIEN KONTROLA");
+			iprintf("\x1b[5;7H----------------");
+			iprintf("\x1b[7;3H'L'  ------------>  Ebatzi");
+			iprintf("\x1b[8;3H                          ");
+			iprintf("\x1b[9;3H'R'  ----------->  Bandera");
+			iprintf("\x1b[10;3H                          ");
+			iprintf("\x1b[11;3H'GORA'  ----------->  Gora");
+			iprintf("\x1b[13;3H'BEHERA'  ------->  Behera");
+			iprintf("\x1b[14;3H                          ");
+			iprintf("\x1b[15;3H'EZKER'  ----->  Ezkerrera");
+			iprintf("\x1b[16;3H                          ");
+			iprintf("\x1b[17;3H'ESKUBI'  ----->  Eskubira");
+			iprintf("\x1b[19;3H'SELECT'  ------>  Amaiera");
+		}
+		if (SakatutakoTekla()==A && kasilaPY==152){
+			iprintf("\x1b[4;7H    KREDITUAK   ");
+			iprintf("\x1b[5;7H    ---------   ");
+			iprintf("\x1b[7;3H EHUko Ingeniaritza Infor-");
+			iprintf("\x1b[8;3Hmatika graduko hainbat    ");
+			iprintf("\x1b[9;3Hikaslek burutua izan da.  ");
+			iprintf("\x1b[10;3H'Buscaminas' joko famatua-");
+			iprintf("\x1b[11;3Hren bertsio bat da.       ");
+			iprintf("\x1b[13;3H Jokoaren helburua taula  ");
+			iprintf("\x1b[14;3Hahalik eta azkarren amai- ");
+			iprintf("\x1b[15;3Htzea da, minak ez dauden  ");
+			iprintf("\x1b[16;3Hlaukiak aukeratuz.        ");
+			iprintf("\x1b[17;3H                          ");
+			iprintf("\x1b[19;3H                          ");
 		}
 	}	
 
@@ -60,12 +90,16 @@ void tekEten()
 		
 		erakutsiAukera(2, kasilaPX, kasilaPY);
 		
-		if (SakatutakoTekla()==A) {
+		//if (SakatutakoTekla()==A) {
 		//	ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsi(kasilaPX, kasilaPY);
-			erakutsiAukera(2, kasilaPX, kasilaPY);
+		//	erakutsi(kasilaPX, kasilaPY);
+		//	erakutsiAukera(2, kasilaPX, kasilaPY);
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
-		} else if (SakatutakoTekla()==B) {
+		//} else if (SakatutakoTekla()==B) {
+		//	banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
+		//	erakutsiAukera(2, kasilaPX, kasilaPY);
+		//}
+		if (SakatutakoTekla()==L) {
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
 			erakutsiAukera(2, kasilaPX, kasilaPY);
 		}
