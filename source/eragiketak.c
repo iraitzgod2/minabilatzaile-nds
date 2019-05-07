@@ -47,13 +47,16 @@ void kontatuOndokoMinak(int m, int n)
 
 	if (!taula[m][n].minaDu)
 	{
-		for (int i = -1; i <= 1; i++) {
-		for (int j = -1; j <= 1; j++) {
-			if (((-1 < (m+i) && (m+i) < err) && 
-				(-1 < (n+j) && (n+j) < zut)) &&
-				(taula[m+i][n+j].minaDu)) 
-				{kont++;}
-		}}
+		int i;
+		int j;
+		for (i = -1; i <= 1; i++) {
+			for (j = -1; j <= 1; j++) {
+				if (((-1 < (m+i) && (m+i) < err) && 
+					(-1 < (n+j) && (n+j) < zut)) &&
+					(taula[m+i][n+j].minaDu)) 
+					{kont++;}
+			}
+		}
 	}
 
 	taula[m][n].zenbatMinaOndoan = kont;
@@ -61,16 +64,20 @@ void kontatuOndokoMinak(int m, int n)
 
 void idatziPantailan()
 {
-	for (int i = 0; i < err; i++) {
-	for (int j = 0; j < zut; j++) {
+	int i;
+	int j;
+	for (i = 0; i < err; i++) {
+	for (j = 0; j < zut; j++) {
 		taula[i][j].minaDu ? iprintf("\x1b[%d;%dH*", j, i) : iprintf("\x1b[%d;%dH%d", j, i, taula[i][j].zenbatMinaOndoan);
 	}}
 }
 
 void erakutsiDena()
 {
-	for (int i = 10; i < 163; i++){
-	for (int j = 10; j < 163; j++){
+	int i;
+	int j;
+	for (i = 10; i < 163; i++){
+	for (j = 10; j < 163; j++){
 		if (i % 16 == 0 && j % 16 == 0)
 			erakutsi(i, j);
 	}}
@@ -81,9 +88,11 @@ void erakutsiDena()
 void taulaNagusiaEzarri()
 {
 	// Taulako kasila guztiak erazagutu
-	for (int i = 0; i < err; i++)
+	int i;
+	int j;
+	for (i = 0; i < err; i++)
 	{
-		for (int j = 0; j < zut; j++)
+		for (j = 0; j < zut; j++)
 		{
 			taula[i][j].hautatuta = 0;
 			taula[i][j].minaDu = 0;
@@ -94,15 +103,15 @@ void taulaNagusiaEzarri()
 	}
 
 	// Minak ausaz jarri
-	for (int i = 0; i < minaKop; i++)
+	for (i = 0; i < minaKop; i++)
 	{
 		minakAusazJarri();
 	}
 
 	// Taulako kasila guztiei dagozkien zenbakiak ezarri
-	for (int i = 0; i < err; i++)
+	for (i = 0; i < err; i++)
 	{
-		for (int j = 0; j < err; j++)
+		for (j = 0; j < err; j++)
 		{
 			kontatuOndokoMinak(i, j);
 		}
@@ -133,6 +142,8 @@ void erakutsi(int i, int j)
 	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
 	if (!taula[m][n].ebatzita && !taula[m][n].banderaDu)
 	{
+		int a;
+		int b;
 		ind++;
 		taula[m][n].ebatzita = 1;
 		if (taula[m][n].minaDu)
@@ -145,15 +156,16 @@ void erakutsi(int i, int j)
 			{
 				case 0: erakutsiHutsa(ind, i, j);
 					// Floodfill algoritmoa
-					for (int a = -16; a <= 16; a += 16){
-					for (int b = -16; b <= 16; b += 16){
+					for (a = -16; a <= 16; a += 16){
+					for (b = -16; b <= 16; b += 16){
 						if (((15 < (i+a) && (i+a) < 176) && 
 							(15 < (j+b) && (j+b) < 176)) &&
 							!(a == 0 && b == 0))
 						{
 							erakutsi(i+a, j+b);
 						}
-					}}
+					}
+					}
 					break;
 				case 1: erakutsiBat(ind, i, j);
 					break;
@@ -205,3 +217,20 @@ int banderaDu(int i, int j)
 {
 	return taula[(i-16)/16][(j-16)/16].banderaDu;
 }
+
+int minaDu(int i, int j)
+{
+	return taula[(i-16)/16][(j-16)/16].minaDu;
+}
+
+void erakutsiMinak()
+{
+	int i;
+	int j;
+	for (i = 10; i < 163; i++){
+	for (j = 10; j < 163; j++){
+		if ((i % 16 == 0 && j % 16 == 0) && minaDu(i,j))
+			erakutsi(i, j);
+	}}
+}
+

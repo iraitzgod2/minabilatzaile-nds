@@ -70,7 +70,7 @@ void tekEten()
 		}
 	}	
 
-	if (EGOERA == JOKOA)
+	if ((EGOERA == JOKOA) || (EGOERA==KONTATZEN))
 	{	
 		if (SakatutakoTekla()==ESKUBI && ((15 < kasilaPX && kasilaPX < 145) && (15 < kasilaPY && kasilaPY < 161))){
 			kasilaPX += 16;
@@ -103,16 +103,16 @@ void tekEten()
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
 			erakutsiAukera(2, kasilaPX, kasilaPY);
 		}
-		if (EGOERA == KONTATZEN)
+		//iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
+	}
+	if (EGOERA == KONTATZEN)
 		{
 			ErlojuaMartxanJarri();
 		} else {
 			ErlojuaGelditu();
-			iprintf("\x1b[13;5HDenboragailua geldirik");
+			//iprintf("\x1b[13;5HDenboragailua geldirik");
 
 		}
-		iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
-	}
 }
 
 void tenpEten()
@@ -122,12 +122,12 @@ void tenpEten()
 
 	if (EGOERA==KONTATZEN)
 	{
-		iprintf("\x1b[13;5HDenboragailua martxan");
+		//iprintf("\x1b[13;5HDenboragailua martxan");
 		tik++;
 		if (tik==3)
 		{
 			seg++;
-			iprintf("\x1b[11;5HPasa diren segunduak: %d ", seg);
+			iprintf("\x1b[11;5H %d ", seg);
 			tik=0;
 		}		
 	}

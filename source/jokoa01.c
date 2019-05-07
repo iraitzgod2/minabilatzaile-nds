@@ -129,14 +129,19 @@ void jokoa01()
 	{	
 		erakutsiTaula();
 		touchRead(&PANT_DAT);
-		iprintf("\x1b[10;0H--------------------------------");
-		iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
-		iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
-		
+		//iprintf("\x1b[10;0H--------------------------------");
+		//iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
+		//iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
+		iprintf("\x1b[23;7HMina kopurua: 20");
 		if (SakatutakoTekla()==R) {
+			EGOERA=KONTATZEN;
 		//	ezabatuAukera(2, kasilaPX, kasilaPY);
 			erakutsi(kasilaPX, kasilaPY);
 			erakutsiAukera(2, kasilaPX, kasilaPY);
+			if (minaDu(kasilaPX, kasilaPY)){
+				erakutsiMinak();
+				//EGOERA=BUKATU;//amaiera
+			}
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		}
 		
@@ -147,14 +152,14 @@ void jokoa01()
 			kasilaY = (PANT_DAT.py - 16) / 16;
 			kasilaPX = PANT_DAT.px - (PANT_DAT.px % 16);
 			kasilaPY = PANT_DAT.py - (PANT_DAT.py % 16);
-			iprintf("\x1b[17;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
+			//iprintf("\x1b[17;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
 		}
 		
 		if ((kasilaX < 10 && kasilaY < 10) && 
 			(PANT_DAT.px == 0 && PANT_DAT.py == 0)) // Pantaila ukitzeari uzterakoan
 		{
-			iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
-			iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
+			//iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
+			//iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
 			{
 				erakutsiAukera(2, kasilaPX, kasilaPY);

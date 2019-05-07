@@ -358,7 +358,8 @@ for bana egin behar da.*/
 void spriteakMemorianGorde()
 {
 	//16*16ko spriteentzako
-	for(int i = 0; i < 16 * 16 / 2; i++) 
+	int i;
+	for(i = 0; i < 16 * 16 / 2; i++) 
 	{
 		gfxhasiera[i] = hasiera[i*2] | (hasiera[(i*2)+1]<<8);
 		gfxaukera[i] = aukera[i*2] | (aukera[(i*2)+1]<<8);
