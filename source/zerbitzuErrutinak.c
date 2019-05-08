@@ -88,48 +88,40 @@ void tekEten()
 		kasilaX = (kasilaPX / 16) - 1;
 		kasilaY = (kasilaPY / 16) - 1;
 		
-		erakutsiAukera(2, kasilaPX, kasilaPY);
+		erakutsiAukera(0, kasilaPX, kasilaPY);
 		
 		//if (SakatutakoTekla()==A) {
 		//	ezabatuAukera(2, kasilaPX, kasilaPY);
 		//	erakutsi(kasilaPX, kasilaPY);
-		//	erakutsiAukera(2, kasilaPX, kasilaPY);
+		//	erakutsiAukera(0, kasilaPX, kasilaPY);
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		//} else if (SakatutakoTekla()==B) {
 		//	banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
-		//	erakutsiAukera(2, kasilaPX, kasilaPY);
+		//	erakutsiAukera(0, kasilaPX, kasilaPY);
 		//}
 		if (SakatutakoTekla()==L) {
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
-			erakutsiAukera(2, kasilaPX, kasilaPY);
+			erakutsiAukera(0, kasilaPX, kasilaPY);
 		}
 		//iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
 	}
-	if (EGOERA == KONTATZEN)
-		{
-			ErlojuaMartxanJarri();
-		} else {
-			ErlojuaGelditu();
-			//iprintf("\x1b[13;5HDenboragailua geldirik");
-
-		}
+	if (EGOERA == KONTATZEN){
+		ErlojuaMartxanJarri();
+	} else {
+		ErlojuaGelditu();
+		//iprintf("\x1b[13;5HDenboragailua geldirik");
+	}
 }
 
 void tenpEten()
 {
-	static int tik = 0;
 	static int seg = 0;
 
 	if (EGOERA==KONTATZEN)
 	{
 		//iprintf("\x1b[13;5HDenboragailua martxan");
-		tik++;
-		if (tik==3)
-		{
-			seg++;
-			iprintf("\x1b[11;5H %d ", seg);
-			tik=0;
-		}		
+		seg++;
+		iprintf("\x1b[12;7H Denbora = %d ", seg/10 );
 	}
 }
 

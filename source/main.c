@@ -24,7 +24,10 @@ int main(void) {
 	EtenakBaimendu();
 	
 	//Zuen jokoari dei egingo zaio hemendik
-	jokoa01();
+	while(1)
+	{
+		jokoa01();
+	}
 	return 0;
 }
 

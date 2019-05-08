@@ -137,14 +137,13 @@ int hautatuta(int m, int n)
 
 void erakutsi(int i, int j)
 {
-	static short unsigned ind = 0;
 	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
 	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
+	short unsigned int ind = (m + n * 10) + 1;
 	if (!taula[m][n].ebatzita && !taula[m][n].banderaDu)
 	{
 		int a;
 		int b;
-		ind++;
 		taula[m][n].ebatzita = 1;
 		if (taula[m][n].minaDu)
 		{

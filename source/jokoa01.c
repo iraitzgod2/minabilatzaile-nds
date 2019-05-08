@@ -24,7 +24,7 @@ void jokoa01()
 	//***************************************************************************************//
 	EtenakBaimendu();						// Etenak baimendu behar dira.
 	konfiguratuTeklatua(0x42F1);			// Teklatua konfiguratu behar da.	
-	konfiguratuTenporizadorea(32764, 0xC3);	// Tenporizadorea konfiguratu behar da.
+	konfiguratuTenporizadorea(60075, 0xC3);	// Tenporizadorea konfiguratu behar da.
 	TekEtenBaimendu();						// Teklatuaren etenak baimendu behar dira.
 	DenbEtenBaimendu();						// Tenporizadorearen etenak baimendu behar dira.
 	etenZerbErrutEzarri();					// Etenen zerbitzu errutinak ezarri behar dira.
@@ -33,7 +33,7 @@ void jokoa01()
 	srand(time(0)); // Partida bakoitzean taula ezberdina lortzeko
 	taulaNagusiaEzarri();
 	//erakutsiTaula(); // Fondoa
-	//erakutsiAukera(2, kasilaPX, kasilaPY); // Lehenengo posizioa (0, 0)
+	//erakutsiAukera(0, kasilaPX, kasilaPY); // Lehenengo posizioa (0, 0)
 
 	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 
@@ -60,25 +60,25 @@ void jokoa01()
 	iprintf("\x1b[12;8H                 ");//Aurreko pantailan idatzitakoaren ezabapena
 	iprintf("\x1b[23;3HAurrera egiteko sakatu 'A'");
 	erakutsiZerrenda();
-	erakutsiAukera(20, 24, 24);
+	erakutsiAukera(0, 24, 24);
 	erakutsiHasiera(21, 24, 88);
 	erakutsiHasiera(22, 24, 152);
 	while((EGOERA == MENUA)){
 		touchRead(&PANT_DAT);
 		if (kasilaPY==24){
-			erakutsiAukera(20, 24, 24);
+			erakutsiAukera(0, 24, 24);
 			erakutsiHasiera(21, 24, 88);
 			erakutsiHasiera(22, 24, 152);
 		}
 		if (kasilaPY==88){
 			erakutsiHasiera(20, 24, 24);
-			erakutsiAukera(21, 24, 88);
+			erakutsiAukera(0, 24, 88);
 			erakutsiHasiera(22, 24, 152);
 		}
 		if (kasilaPY==152){
 			erakutsiHasiera(20, 24, 24);
 			erakutsiHasiera(21, 24, 88);
-			erakutsiAukera(22, 24, 152);
+			erakutsiAukera(0, 24, 152);
 		}
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 239) &&
 		 (15 < PANT_DAT.py && PANT_DAT.py < 48))
@@ -125,6 +125,7 @@ void jokoa01()
 	iprintf("\x1b[23;3H                          ");
 
 	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
+	iprintf("\x1b[23;7HMina kopurua: 20");
 	while(EGOERA != BUKATU)
 	{	
 		erakutsiTaula();
@@ -132,15 +133,14 @@ void jokoa01()
 		//iprintf("\x1b[10;0H--------------------------------");
 		//iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
 		//iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
-		iprintf("\x1b[23;7HMina kopurua: 20");
 		if (SakatutakoTekla()==R) {
 			EGOERA=KONTATZEN;
 		//	ezabatuAukera(2, kasilaPX, kasilaPY);
 			erakutsi(kasilaPX, kasilaPY);
-			erakutsiAukera(2, kasilaPX, kasilaPY);
+			erakutsiAukera(0, kasilaPX, kasilaPY);
 			if (minaDu(kasilaPX, kasilaPY)){
 				erakutsiMinak();
-				//EGOERA=BUKATU;//amaiera
+				EGOERA=BUKATU;//amaiera
 			}
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		}
@@ -162,7 +162,7 @@ void jokoa01()
 			//iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
 			{
-				erakutsiAukera(2, kasilaPX, kasilaPY);
+				erakutsiAukera(0, kasilaPX, kasilaPY);
 				aurrekoX = kasilaX;
 				aurrekoY = kasilaY;
 			}
@@ -171,6 +171,11 @@ void jokoa01()
 		if (SakatutakoTekla()==SELECT){//Jokoaren amaiera
 			EGOERA=BUKATU;
 		}
+	}
+	if (EGOERA == BUKATU)
+	{
+		//spriteGuztiakEzabatu();
+		//denboragailuaEzabatu();
 	}
 }
 
