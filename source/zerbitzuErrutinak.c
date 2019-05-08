@@ -107,9 +107,15 @@ void tekEten()
 	}
 	if (EGOERA == KONTATZEN){
 		ErlojuaMartxanJarri();
-	} else {
+	} 
+	if (EGOERA==IRABAZI){
 		ErlojuaGelditu();
 		//iprintf("\x1b[13;5HDenboragailua geldirik");
+	}
+	if (EGOERA==GALDU || EGOERA==IRABAZI){
+		if (SakatutakoTekla()==A){
+			EGOERA = BUKATU;
+		}
 	}
 }
 

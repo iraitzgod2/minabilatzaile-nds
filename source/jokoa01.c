@@ -126,7 +126,7 @@ void jokoa01()
 
 	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 	iprintf("\x1b[23;7HMina kopurua: 20");
-	while(EGOERA != BUKATU)
+	while(EGOERA != GALDU || EGOERA!=IRABAZI)
 	{	
 		erakutsiTaula();
 		touchRead(&PANT_DAT);
@@ -140,7 +140,7 @@ void jokoa01()
 			erakutsiAukera(0, kasilaPX, kasilaPY);
 			if (minaDu(kasilaPX, kasilaPY)){
 				erakutsiMinak();
-				EGOERA=BUKATU;//amaiera
+				EGOERA=GALDU;//amaiera
 			}
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		}
@@ -172,10 +172,21 @@ void jokoa01()
 			EGOERA=BUKATU;
 		}
 	}
-	if (EGOERA == BUKATU)
-	{
+	if(EGOERA ==GALDU){ 
+		iprintf("\x1b[11;7H ----------- ");
+		iprintf("\x1b[12;7H| GAME OVER |");
+		iprintf("\x1b[13;7H ----------- ");
+	} 
+	if(EGOERA==IRABAZI){
+		iprintf("\x1b[11;7H IRABAZI DUZU!!");
+	}
+	iprintf("\x1b[23;7HAmaitzeko sakatu 'A'");
+	while (EGOERA ==GALDU || EGOERA==IRABAZI){ 
+	}
+	//if (EGOERA == BUKATU)
+	//{
 		//spriteGuztiakEzabatu();
 		//denboragailuaEzabatu();
-	}
+	//}
 }
 
