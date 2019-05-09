@@ -5,6 +5,7 @@
 
 extern int zenbatMina;
 extern int zenbatBandera;
+extern int kontagailua;
 
 extern void taulaNagusiaEzarri();
 extern void hautatu(int m, int n);
@@ -17,3 +18,4 @@ extern void banderaKendu(int i, int j);
 extern int banderaDu(int i, int j);
 extern int minaDu(int i, int j);
 extern void erakutsiMinak();
+extern void ezabatuSpriteGuztiak();

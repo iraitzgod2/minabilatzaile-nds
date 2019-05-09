@@ -41,9 +41,9 @@ void tekEten()
 		if (SakatutakoTekla()==A && kasilaPY==88){
 			iprintf("\x1b[4;7HBOTOIEN KONTROLA");
 			iprintf("\x1b[5;7H----------------");
-			iprintf("\x1b[7;3H'L'  ------------>  Ebatzi");
+			iprintf("\x1b[7;3H'R'  ------------>  Ebatzi");
 			iprintf("\x1b[8;3H                          ");
-			iprintf("\x1b[9;3H'R'  ----------->  Bandera");
+			iprintf("\x1b[9;3H'L'  ----------->  Bandera");
 			iprintf("\x1b[10;3H                          ");
 			iprintf("\x1b[11;3H'GORA'  ----------->  Gora");
 			iprintf("\x1b[13;3H'BEHERA'  ------->  Behera");
@@ -108,13 +108,12 @@ void tekEten()
 	if (EGOERA == KONTATZEN){
 		ErlojuaMartxanJarri();
 	} 
-	if (EGOERA==IRABAZI){
+	if (EGOERA==BUKATU){
 		ErlojuaGelditu();
-		//iprintf("\x1b[13;5HDenboragailua geldirik");
-	}
-	if (EGOERA==GALDU || EGOERA==IRABAZI){
 		if (SakatutakoTekla()==A){
-			EGOERA = BUKATU;
+			iprintf("\x1b[23;2H                              ");
+			ezabatuSpriteGuztiak();
+			EGOERA = MENUA;
 		}
 	}
 }
@@ -127,7 +126,10 @@ void tenpEten()
 	{
 		//iprintf("\x1b[13;5HDenboragailua martxan");
 		seg++;
-		iprintf("\x1b[12;7H Denbora = %d ", seg/10 );
+		iprintf("\x1b[12;8H Denbora = %d ", seg );
+	}
+	if (EGOERA==BUKATU){
+		seg=0;
 	}
 }
 

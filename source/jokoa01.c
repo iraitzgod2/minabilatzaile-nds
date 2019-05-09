@@ -24,7 +24,7 @@ void jokoa01()
 	//***************************************************************************************//
 	EtenakBaimendu();						// Etenak baimendu behar dira.
 	konfiguratuTeklatua(0x42F1);			// Teklatua konfiguratu behar da.	
-	konfiguratuTenporizadorea(60075, 0xC3);	// Tenporizadorea konfiguratu behar da.
+	konfiguratuTenporizadorea(32764, 0xC3);	// Tenporizadorea konfiguratu behar da.
 	TekEtenBaimendu();						// Teklatuaren etenak baimendu behar dira.
 	DenbEtenBaimendu();						// Tenporizadorearen etenak baimendu behar dira.
 	etenZerbErrutEzarri();					// Etenen zerbitzu errutinak ezarri behar dira.
@@ -38,19 +38,17 @@ void jokoa01()
 	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 
 	//aldagai baten definizioa
-	int tekla = 0;
-	int kont = 0;
 
 	int aurrekoX = 10, aurrekoY = 10; // Fitxategi honetan bakarrik erabiltzen dira
 
 	kasilaX = 100; // Taulako kasila (0, 9)
 	kasilaY = 100;
 	
-	EGOERA = HASTEKO;
+	//EGOERA = HASTEKO;
 
 	//hasierako pantaila
-	erakutsiSarrera();
 	while((EGOERA == HASTEKO)){
+		erakutsiSarrera();
 		iprintf("\x1b[12;8HSakatu 'A' botoia");
 	}
 
@@ -58,12 +56,9 @@ void jokoa01()
 	kasilaPX = 24;// hasierako kasilari dagokion pixela
 	kasilaPY = 24;
 	iprintf("\x1b[12;8H                 ");//Aurreko pantailan idatzitakoaren ezabapena
-	iprintf("\x1b[23;3HAurrera egiteko sakatu 'A'");
-	erakutsiZerrenda();
-	erakutsiAukera(0, 24, 24);
-	erakutsiHasiera(21, 24, 88);
-	erakutsiHasiera(22, 24, 152);
 	while((EGOERA == MENUA)){
+		iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
+		erakutsiZerrenda();
 		touchRead(&PANT_DAT);
 		if (kasilaPY==24){
 			erakutsiAukera(0, 24, 24);
@@ -95,9 +90,6 @@ void jokoa01()
 		{
 			kasilaPY = 152;
 		}
-		if (SakatutakoTekla()==SELECT){//Jokoaren amaiera
-			EGOERA=BUKATU;
-		}
 	}
 	ezabatuAukera(20, 24, 24);
 	ezabatuHasiera(21, 24, 88);
@@ -124,10 +116,10 @@ void jokoa01()
 	iprintf("\x1b[19;3H                          ");
 	iprintf("\x1b[23;3H                          ");
 
-	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
-	iprintf("\x1b[23;7HMina kopurua: 20");
-	while(EGOERA != GALDU || EGOERA!=IRABAZI)
+	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
+	while(EGOERA != BUKATU)
 	{	
+		iprintf("\x1b[23;7HMina kopurua: 20");
 		erakutsiTaula();
 		touchRead(&PANT_DAT);
 		//iprintf("\x1b[10;0H--------------------------------");
@@ -140,7 +132,11 @@ void jokoa01()
 			erakutsiAukera(0, kasilaPX, kasilaPY);
 			if (minaDu(kasilaPX, kasilaPY)){
 				erakutsiMinak();
-				EGOERA=GALDU;//amaiera
+				iprintf("\x1b[11;9H ----------- ");
+				iprintf("\x1b[12;9H| GAME OVER |");
+				iprintf("\x1b[13;9H ----------- ");
+				EGOERA=BUKATU;//amaiera
+
 			}
 		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
 		}
@@ -171,22 +167,21 @@ void jokoa01()
 		if (SakatutakoTekla()==SELECT){//Jokoaren amaiera
 			EGOERA=BUKATU;
 		}
-	}
-	if(EGOERA ==GALDU){ 
-		iprintf("\x1b[11;7H ----------- ");
-		iprintf("\x1b[12;7H| GAME OVER |");
-		iprintf("\x1b[13;7H ----------- ");
+		if (kontagailua==80){
+			iprintf("\x1b[11;9HIRABAZI DUZU!!");
+			EGOERA=BUKATU;//amaiera
+		}
+			
 	} 
-	if(EGOERA==IRABAZI){
-		iprintf("\x1b[11;7H IRABAZI DUZU!!");
-	}
-	iprintf("\x1b[23;7HAmaitzeko sakatu 'A'");
-	while (EGOERA ==GALDU || EGOERA==IRABAZI){ 
-	}
-	//if (EGOERA == BUKATU)
-	//{
+	iprintf("\x1b[23;7H                ");
+	while (EGOERA == BUKATU)
+	{
+		iprintf("\x1b[23;2HSakatu 'A' menura itzultzeko");
 		//spriteGuztiakEzabatu();
 		//denboragailuaEzabatu();
-	//}
+	}
+	iprintf("\x1b[11;9H             ");
+	iprintf("\x1b[12;9H             ");
+	iprintf("\x1b[13;9H             ");
 }
 

@@ -17,6 +17,7 @@
 
 int zenbatMina = 0;
 int zenbatBandera = 0;
+int kontagailua =0;
 // -------------------------------
 
 struct Kasila
@@ -154,6 +155,7 @@ void erakutsi(int i, int j)
 			switch (taula[m][n].zenbatMinaOndoan)
 			{
 				case 0: erakutsiHutsa(ind, i, j);
+					kontagailua++;
 					// Floodfill algoritmoa
 					for (a = -16; a <= 16; a += 16){
 					for (b = -16; b <= 16; b += 16){
@@ -167,20 +169,28 @@ void erakutsi(int i, int j)
 					}
 					break;
 				case 1: erakutsiBat(ind, i, j);
+					kontagailua++;
 					break;
 				case 2: erakutsiBi(ind, i, j);
+					kontagailua++;
 					break;
 				case 3: erakutsiHiru(ind, i, j);
+					kontagailua++;
 					break;
 				case 4: erakutsiLau(ind, i, j);
+					kontagailua++;
 					break;
 				case 5: erakutsiBost(ind, i, j);
+					kontagailua++;
 					break;
 				case 6: erakutsiSei(ind, i, j);
+					kontagailua++;
 					break;
 				case 7: erakutsiZazpi(ind, i, j);
+					kontagailua++;
 					break;
 				case 8: erakutsiZortzi(ind, i, j);
+					kontagailua++;
 					break;
 			}
 		}
@@ -232,4 +242,20 @@ void erakutsiMinak()
 			erakutsi(i, j);
 	}}
 }
+
+void ezabatuSpriteGuztiak(){
+	int i;
+	int j;
+	for (i = 10; i < 163; i++){
+	for (j = 10; j < 163; j++){
+	int m = (i - 16) / 16; // m: (0, 9), i: pixelak
+	int n = (j - 16) / 16; // n: (0, 9), j: pixelak
+	short unsigned int ind = (m + n * 10) + 1; // kasila bakoitzak bere bandera zenbakia du.
+	if (taula[m][n].ebatzita || taula[m][n].banderaDu || taula[m][n].minaDu)
+	{
+		ezabatuAukera(ind, i, j);
+	}
+	}}
+}
+
 
