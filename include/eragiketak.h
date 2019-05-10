@@ -7,6 +7,7 @@ extern int zenbatMina;
 extern int zenbatBandera;
 extern int kontagailua;
 
+extern void ezabatuPantaila();
 extern void taulaNagusiaEzarri();
 extern void hautatu(int m, int n);
 extern int hautatuta(int m, int n);

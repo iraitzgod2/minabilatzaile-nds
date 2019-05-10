@@ -15,6 +15,7 @@ zerbitzuErrutiank.c
 int EGOERA;
 int kasilaX, kasilaY;
 int kasilaPX, kasilaPY;
+
 void tekEten()
 {
 	if (EGOERA == HASTEKO){
@@ -113,6 +114,7 @@ void tekEten()
 		if (SakatutakoTekla()==A){
 			iprintf("\x1b[23;2H                              ");
 			ezabatuSpriteGuztiak();
+			ezabatuPantaila();
 			EGOERA = MENUA;
 		}
 	}

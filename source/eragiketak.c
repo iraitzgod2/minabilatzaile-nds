@@ -86,6 +86,14 @@ void erakutsiDena()
 
 // --------------------------------------------------------
 
+void ezabatuPantaila()
+{
+	int i;
+	for (i = 0; i < 24; i++) {
+		iprintf("\x1b[%d;0H                                ", i);
+	}
+}
+
 void taulaNagusiaEzarri()
 {
 	// Taulako kasila guztiak erazagutu

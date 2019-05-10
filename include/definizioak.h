@@ -55,4 +55,3 @@ extern int kasilaX;
 extern int kasilaY;
 extern int kasilaPX;
 extern int kasilaPY;
-

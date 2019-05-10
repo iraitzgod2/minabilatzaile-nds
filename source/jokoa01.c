@@ -32,156 +32,141 @@ void jokoa01()
 	
 	srand(time(0)); // Partida bakoitzean taula ezberdina lortzeko
 	taulaNagusiaEzarri();
-	//erakutsiTaula(); // Fondoa
-	//erakutsiAukera(0, kasilaPX, kasilaPY); // Lehenengo posizioa (0, 0)
 
 	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
-
-	//aldagai baten definizioa
 
 	int aurrekoX = 10, aurrekoY = 10; // Fitxategi honetan bakarrik erabiltzen dira
 
 	kasilaX = 100; // Taulako kasila (0, 9)
 	kasilaY = 100;
-	
-	//EGOERA = HASTEKO;
 
-	//hasierako pantaila
-	while((EGOERA == HASTEKO)){
-		erakutsiSarrera();
+	// Hasierako pantaila
+	erakutsiSarrera();
+	while(EGOERA == HASTEKO)
+	{
 		iprintf("\x1b[12;8HSakatu 'A' botoia");
 	}
 
-	//menuaren pantaila
-	kasilaPX = 24;// hasierako kasilari dagokion pixela
+	ezabatuPantaila(); // Aurreko pantailan idatzitakoaren ezabapena
+
+	// Menuaren pantaila
+	kasilaPX = 24; // Hasierako kasilari dagokion pixela
 	kasilaPY = 24;
-	iprintf("\x1b[12;8H                 ");//Aurreko pantailan idatzitakoaren ezabapena
-	while((EGOERA == MENUA)){
-		iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
-		erakutsiZerrenda();
+
+	erakutsiHasiera(20, 24, 24);
+	erakutsiHasiera(21, 24, 88);
+	erakutsiHasiera(22, 24, 152);
+
+	erakutsiZerrenda(); // Behin bakarrik erakustearekin nahikoa da
+	while(EGOERA == MENUA)
+	{
 		touchRead(&PANT_DAT);
-		if (kasilaPY==24){
-			erakutsiAukera(0, 24, 24);
-			erakutsiHasiera(21, 24, 88);
-			erakutsiHasiera(22, 24, 152);
-		}
-		if (kasilaPY==88){
-			erakutsiHasiera(20, 24, 24);
-			erakutsiAukera(0, 24, 88);
-			erakutsiHasiera(22, 24, 152);
-		}
-		if (kasilaPY==152){
-			erakutsiHasiera(20, 24, 24);
-			erakutsiHasiera(21, 24, 88);
-			erakutsiAukera(0, 24, 152);
-		}
+		iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
+		
+		// Menuko aukera pantaila bidez kontrolatzeko
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 239) &&
-		 (15 < PANT_DAT.py && PANT_DAT.py < 48))
+			(15 < PANT_DAT.py && PANT_DAT.py < 48))
 		{
 			kasilaPY = 24;
 		}
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 240) &&
-		 (79 < PANT_DAT.py && PANT_DAT.py < 112))
+			(79 < PANT_DAT.py && PANT_DAT.py < 112))
 		{
 			kasilaPY = 88;
 		}
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 240) &&
-		 (143 < PANT_DAT.py && PANT_DAT.py < 176))
+			(143 < PANT_DAT.py && PANT_DAT.py < 176))
 		{
 			kasilaPY = 152;
 		}
+
+		// Menuko aukera mugitzeko kudeaketa
+		switch (kasilaPY)
+		{
+			case 24: erakutsiAukera(0, 24, 24);
+				break;
+			case 88: erakutsiAukera(0, 24, 88);
+				break;
+			case 152: erakutsiAukera(0, 24, 152);
+				break;
+		}
 	}
-	ezabatuAukera(20, 24, 24);
+	ezabatuAukera(0, 24, 24);
+	ezabatuHasiera(20, 24, 24);
 	ezabatuHasiera(21, 24, 88);
 	ezabatuHasiera(22, 24, 152);
 
-//Inkesta egin behar da. SELECT tekla sakatzean 
-//Egoera aldatu eta programa bukatu
 	kasilaPX = 16; // Kasilari dagokion pixela (16, 32, 48, 64, ...)
 	kasilaPY = 16;
 
 	//Aurreko pantailan idatzitakoaren ezabapena
-	iprintf("\x1b[4;7H                ");
-	iprintf("\x1b[5;7H                ");
-	iprintf("\x1b[7;3H                          ");
-	iprintf("\x1b[8;3H                          ");
-	iprintf("\x1b[9;3H                          ");
-	iprintf("\x1b[10;3H                          ");
-	iprintf("\x1b[11;3H                          ");
-	iprintf("\x1b[13;3H                          ");
-	iprintf("\x1b[14;3H                          ");
-	iprintf("\x1b[15;3H                          ");
-	iprintf("\x1b[16;3H                          ");
-	iprintf("\x1b[17;3H                          ");
-	iprintf("\x1b[19;3H                          ");
-	iprintf("\x1b[23;3H                          ");
+	ezabatuPantaila();
 
 	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
-	while(EGOERA != BUKATU)
-	{	
-		iprintf("\x1b[23;7HMina kopurua: 20");
-		erakutsiTaula();
-		touchRead(&PANT_DAT);
-		//iprintf("\x1b[10;0H--------------------------------");
-		//iprintf("\x1b[14;0H     Pantailan x koord: %d  ", PANT_DAT.px);
-		//iprintf("\x1b[15;0H     Pantailan y koord: %d  ", PANT_DAT.py);
-		if (SakatutakoTekla()==R) {
-			EGOERA=KONTATZEN;
-		//	ezabatuAukera(2, kasilaPX, kasilaPY);
-			erakutsi(kasilaPX, kasilaPY);
-			erakutsiAukera(0, kasilaPX, kasilaPY);
-			if (minaDu(kasilaPX, kasilaPY)){
-				erakutsiMinak();
-				iprintf("\x1b[11;9H ----------- ");
-				iprintf("\x1b[12;9H| GAME OVER |");
-				iprintf("\x1b[13;9H ----------- ");
-				EGOERA=BUKATU;//amaiera
 
-			}
-		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
-		}
-		
+	// Jokoaren kudeaketa
+	iprintf("\x1b[23;7HMina kopurua: 20");
+	erakutsiTaula();
+	while(EGOERA != BUKATU)
+	{
+		touchRead(&PANT_DAT);
+		// Pantaila ukitzerakoan aldagaiak definitu
 		if ((15 < PANT_DAT.px && PANT_DAT.px < 176) &&
-			(15 < PANT_DAT.py && PANT_DAT.py < 176)) // Pantaila ukitzerakoan aldagaiak definitu
+			(15 < PANT_DAT.py && PANT_DAT.py < 176))
 		{
 			kasilaX = (PANT_DAT.px - 16) / 16;
 			kasilaY = (PANT_DAT.py - 16) / 16;
 			kasilaPX = PANT_DAT.px - (PANT_DAT.px % 16);
 			kasilaPY = PANT_DAT.py - (PANT_DAT.py % 16);
-			//iprintf("\x1b[17;0H     Kasila koord: %d, %d  ", kasilaX, kasilaY);
 		}
-		
+		// Pantaila ukitzeari uzterakoan
 		if ((kasilaX < 10 && kasilaY < 10) && 
-			(PANT_DAT.px == 0 && PANT_DAT.py == 0)) // Pantaila ukitzeari uzterakoan
+			(PANT_DAT.px == 0 && PANT_DAT.py == 0))
 		{
-			//iprintf("\x1b[19;0H     Sakatutako kasila: %d, %d  ", kasilaX, kasilaY);
-			//iprintf("\x1b[20;0H     Sakatutako kasila: %d, %d  ", kasilaPX, kasilaPY);
 			if (aurrekoX != kasilaX || aurrekoY != kasilaY)
 			{
 				erakutsiAukera(0, kasilaPX, kasilaPY);
 				aurrekoX = kasilaX;
 				aurrekoY = kasilaY;
 			}
-			//ebatzi(kasilaX, kasilaY);
 		}
-		if (SakatutakoTekla()==SELECT){//Jokoaren amaiera
-			EGOERA=BUKATU;
+
+		if (SakatutakoTekla() == R) {
+			if (EGOERA != KONTATZEN) {EGOERA = KONTATZEN;}
+		//	ezabatuAukera(2, kasilaPX, kasilaPY);
+			erakutsi(kasilaPX, kasilaPY);
+			// erakutsiAukera(0, kasilaPX, kasilaPY);
+			if (minaDu(kasilaPX, kasilaPY)){
+				erakutsiMinak();
+				iprintf("\x1b[11;9H ----------- ");
+				iprintf("\x1b[12;9H| GAME OVER |");
+				iprintf("\x1b[13;9H ----------- ");
+				EGOERA=BUKATU;//amaiera
+			}
 		}
+		
+		if (SakatutakoTekla() == SELECT)
+		{
+			// Jokoaren amaiera
+			EGOERA = BUKATU;
+		}
+
 		if (kontagailua==80){
+			iprintf("\x1b[11;9H ------------ ");
 			iprintf("\x1b[11;9HIRABAZI DUZU!!");
-			EGOERA=BUKATU;//amaiera
+			iprintf("\x1b[11;9H ------------ ");
+			EGOERA = BUKATU;//amaiera
 		}
 			
-	} 
-	iprintf("\x1b[23;7H                ");
+	}
+	//iprintf("\x1b[23;7H                ");
 	while (EGOERA == BUKATU)
 	{
 		iprintf("\x1b[23;2HSakatu 'A' menura itzultzeko");
-		//spriteGuztiakEzabatu();
-		//denboragailuaEzabatu();
 	}
-	iprintf("\x1b[11;9H             ");
-	iprintf("\x1b[12;9H             ");
-	iprintf("\x1b[13;9H             ");
+	//iprintf("\x1b[11;9H             ");
+	//iprintf("\x1b[12;9H             ");
+	//iprintf("\x1b[13;9H             ");
+	ezabatuPantaila();
 }
 
