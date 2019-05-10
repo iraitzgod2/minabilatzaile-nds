@@ -58,10 +58,11 @@ void jokoa01()
 	erakutsiHasiera(22, 24, 152);
 
 	erakutsiZerrenda(); // Behin bakarrik erakustearekin nahikoa da
+	iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
 	while(EGOERA == MENUA)
 	{
 		touchRead(&PANT_DAT);
-		iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
+		//iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
 		
 		// Menuko aukera pantaila bidez kontrolatzeko
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 239) &&
@@ -102,7 +103,7 @@ void jokoa01()
 	//Aurreko pantailan idatzitakoaren ezabapena
 	ezabatuPantaila();
 
-	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
+	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 
 	// Jokoaren kudeaketa
 	iprintf("\x1b[23;7HMina kopurua: 20");
@@ -152,9 +153,10 @@ void jokoa01()
 		}
 
 		if (kontagailua==80){
-			iprintf("\x1b[11;9H ------------ ");
-			iprintf("\x1b[11;9HIRABAZI DUZU!!");
-			iprintf("\x1b[11;9H ------------ ");
+			erakutsiBanderak();
+			iprintf("\x1b[8;7H ---------------- ");
+			iprintf("\x1b[9;7H| IRABAZI DUZU!! |");
+			iprintf("\x1b[10;7H ---------------- ");
 			EGOERA = BUKATU;//amaiera
 		}
 			

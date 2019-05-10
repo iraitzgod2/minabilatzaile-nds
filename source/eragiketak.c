@@ -266,4 +266,15 @@ void ezabatuSpriteGuztiak(){
 	}}
 }
 
+void erakutsiBanderak()
+{
+	int i;
+	int j;
+	for (i = 10; i < 163; i++){
+	for (j = 10; j < 163; j++){
+		if ((i % 16 == 0 && j % 16 == 0) && minaDu(i,j))
+			banderaJarri(i, j);
+	}}
+}
+
 

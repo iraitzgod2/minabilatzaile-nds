@@ -40,21 +40,24 @@ void tekEten()
 			EGOERA = JOKOA;
 		}
 		if (SakatutakoTekla()==A && kasilaPY==88){
+			ezabatuPantaila();
 			iprintf("\x1b[4;7HBOTOIEN KONTROLA");
 			iprintf("\x1b[5;7H----------------");
 			iprintf("\x1b[7;3H'R'  ------------>  Ebatzi");
-			iprintf("\x1b[8;3H                          ");
+			//iprintf("\x1b[8;3H                          ");
 			iprintf("\x1b[9;3H'L'  ----------->  Bandera");
-			iprintf("\x1b[10;3H                          ");
+			//iprintf("\x1b[10;3H                          ");
 			iprintf("\x1b[11;3H'GORA'  ----------->  Gora");
 			iprintf("\x1b[13;3H'BEHERA'  ------->  Behera");
-			iprintf("\x1b[14;3H                          ");
+			//iprintf("\x1b[14;3H                          ");
 			iprintf("\x1b[15;3H'EZKER'  ----->  Ezkerrera");
-			iprintf("\x1b[16;3H                          ");
+			//iprintf("\x1b[16;3H                          ");
 			iprintf("\x1b[17;3H'ESKUBI'  ----->  Eskubira");
 			iprintf("\x1b[19;3H'SELECT'  ------>  Amaiera");
+			iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
 		}
 		if (SakatutakoTekla()==A && kasilaPY==152){
+			ezabatuPantaila();
 			iprintf("\x1b[4;7H    KREDITUAK   ");
 			iprintf("\x1b[5;7H    ---------   ");
 			iprintf("\x1b[7;3H EHUko Ingeniaritza Infor-");
@@ -66,8 +69,9 @@ void tekEten()
 			iprintf("\x1b[14;3Hahalik eta azkarren amai- ");
 			iprintf("\x1b[15;3Htzea da, minak ez dauden  ");
 			iprintf("\x1b[16;3Hlaukiak aukeratuz.        ");
-			iprintf("\x1b[17;3H                          ");
-			iprintf("\x1b[19;3H                          ");
+			//iprintf("\x1b[17;3H                          ");
+			//iprintf("\x1b[19;3H                          ");
+			iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
 		}
 	}	
 
@@ -112,9 +116,9 @@ void tekEten()
 	if (EGOERA==BUKATU){
 		ErlojuaGelditu();
 		if (SakatutakoTekla()==A){
-			iprintf("\x1b[23;2H                              ");
 			ezabatuSpriteGuztiak();
 			ezabatuPantaila();
+			kontagailua=0;
 			EGOERA = MENUA;
 		}
 	}

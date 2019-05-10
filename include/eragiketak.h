@@ -20,3 +20,4 @@ extern int banderaDu(int i, int j);
 extern int minaDu(int i, int j);
 extern void erakutsiMinak();
 extern void ezabatuSpriteGuztiak();
+extern void erakutsiBanderak();
