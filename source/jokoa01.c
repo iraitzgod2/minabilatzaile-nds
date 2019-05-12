@@ -103,7 +103,7 @@ void jokoa01()
 	//Aurreko pantailan idatzitakoaren ezabapena
 	ezabatuPantaila();
 
-	idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
+	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 
 	// Jokoaren kudeaketa
 	iprintf("\x1b[23;7HMina kopurua: 20");
@@ -152,14 +152,14 @@ void jokoa01()
 			EGOERA = BUKATU;
 		}
 
-		if (kontagailua==80){
+		if (kontagailua == ((err * zut) - minaKop))
+		{
 			erakutsiBanderak();
 			iprintf("\x1b[8;7H ---------------- ");
 			iprintf("\x1b[9;7H| IRABAZI DUZU!! |");
 			iprintf("\x1b[10;7H ---------------- ");
 			EGOERA = BUKATU;//amaiera
 		}
-			
 	}
 	//iprintf("\x1b[23;7H                ");
 	while (EGOERA == BUKATU)

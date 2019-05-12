@@ -12,8 +12,8 @@ definizioak.h
 #define IF		(*(vuint32*)0x04000214) //Interrupt Flag -- Eten eskaeren erregistroa
 
 // Etenen tratamendurako funtzioak
-#define EtenakBaimendu() IME=1 //Eten guztiak baimendu
-#define EtenakGalarazi() IME=0 //Eten guztiak galarazi
+#define EtenakBaimendu() IME = 1 //Eten guztiak baimendu
+#define EtenakGalarazi() IME = 0 //Eten guztiak galarazi
 
 //teklatuaren erregistroak
 #define TEKLAK_DAT	(*(vu16*)0x4000130) //teklatuaren datu erregistroa
@@ -21,7 +21,7 @@ definizioak.h
 
 //denboragailuaren (Timer0) erregistroak
 #define DENB0_KNT   (*(vuint16*)0x04000102) //kontrol erregistroa
-#define DENB0_DAT    (*(vuint16*)0x04000100) //datu-erregistroa
+#define DENB0_DAT   (*(vuint16*)0x04000100) //datu-erregistroa
 
 
 
