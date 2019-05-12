@@ -150,7 +150,7 @@ void tekEten()
 		if (SakatutakoTekla() == L)
 		{
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
-			iprintf("\x1b[21;7HBandera kopurua: %d ", zenbatBandera);
+			iprintf("\x1b[21;6HBandera kopurua: %d ", zenbatBandera);
 		}
 
 		erakutsiAukera(0, kasilaPX, kasilaPY);

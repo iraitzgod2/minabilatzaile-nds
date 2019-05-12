@@ -132,7 +132,7 @@ void jokoa01()
 			}
 		}
 
-		if (SakatutakoTekla() == R) {
+		if (SakatutakoTekla() == R && !banderaDu(kasilaPX, kasilaPY)) {
 			if (EGOERA != KONTATZEN) {EGOERA = KONTATZEN;}
 		//	ezabatuAukera(2, kasilaPX, kasilaPY);
 			erakutsi(kasilaPX, kasilaPY);
