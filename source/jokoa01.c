@@ -139,6 +139,7 @@ void jokoa01()
 			// erakutsiAukera(0, kasilaPX, kasilaPY);
 			if (minaDu(kasilaPX, kasilaPY)){
 				erakutsiMinak();
+				ezabatuPantaila();
 				iprintf("\x1b[11;9H ----------- ");
 				iprintf("\x1b[12;9H| GAME OVER |");
 				iprintf("\x1b[13;9H ----------- ");
@@ -155,6 +156,7 @@ void jokoa01()
 		if (kontagailua == ((err * zut) - minaKop))
 		{
 			erakutsiBanderak();
+			ezabatuPantaila();
 			iprintf("\x1b[8;7H ---------------- ");
 			iprintf("\x1b[9;7H| IRABAZI DUZU!! |");
 			iprintf("\x1b[10;7H ---------------- ");

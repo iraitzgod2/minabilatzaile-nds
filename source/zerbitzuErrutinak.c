@@ -50,6 +50,7 @@ void tekEten()
 {
 	if (EGOERA == HASTEKO){
 		if (SakatutakoTekla() == A){
+			//ezabatuPantaila();// Aurreko pantailan idatzitakoaren ezabapena
 			EGOERA = MENUA;
 		}
 	}
@@ -80,7 +81,7 @@ void tekEten()
 			switch(kasilaPY)
 			{
 				case 24:
-					ezabatuPantaila();
+					//ezabatuPantaila();
 					EGOERA = JOKOA;
 					break;
 
@@ -149,6 +150,7 @@ void tekEten()
 		if (SakatutakoTekla() == L)
 		{
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
+			iprintf("\x1b[21;7HBandera kopurua: %d ", zenbatBandera);
 		}
 
 		erakutsiAukera(0, kasilaPX, kasilaPY);
