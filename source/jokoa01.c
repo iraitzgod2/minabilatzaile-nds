@@ -33,8 +33,6 @@ void jokoa01()
 	srand(time(0)); // Partida bakoitzean taula ezberdina lortzeko
 	taulaNagusiaEzarri();
 
-	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
-
 	int aurrekoX = 10, aurrekoY = 10; // Fitxategi honetan bakarrik erabiltzen dira
 
 	kasilaX = 100; // Taulako kasila (0, 9)
@@ -62,7 +60,6 @@ void jokoa01()
 	while(EGOERA == MENUA)
 	{
 		touchRead(&PANT_DAT);
-		//iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
 		
 		// Menuko aukera pantaila bidez kontrolatzeko
 		if ((55 < PANT_DAT.px && PANT_DAT.px < 239) &&
@@ -106,7 +103,7 @@ void jokoa01()
 	//idatziPantailan(); // Taulako zenbakiak karaktereetan (probak egiteko)
 
 	// Jokoaren kudeaketa
-	iprintf("\x1b[23;7HMina kopurua: 20");
+	iprintf("\x1b[23;7HMina kopurua: 15");
 	erakutsiTaula();
 	while(EGOERA != BUKATU)
 	{
@@ -134,9 +131,7 @@ void jokoa01()
 
 		if (SakatutakoTekla() == R && !banderaDu(kasilaPX, kasilaPY)) {
 			if (EGOERA != KONTATZEN) {EGOERA = KONTATZEN;}
-		//	ezabatuAukera(2, kasilaPX, kasilaPY);
 			erakutsi(kasilaPX, kasilaPY);
-			// erakutsiAukera(0, kasilaPX, kasilaPY);
 			if (minaDu(kasilaPX, kasilaPY)){
 				erakutsiMinak();
 				ezabatuPantaila();
@@ -150,27 +145,24 @@ void jokoa01()
 		if (SakatutakoTekla() == SELECT)
 		{
 			// Jokoaren amaiera
+			ezabatuPantaila();
 			EGOERA = BUKATU;
 		}
 
 		if (kontagailua == ((err * zut) - minaKop))
 		{
 			erakutsiBanderak();
-			ezabatuPantaila();
+			iprintf("\x1b[21;6H                   ");
 			iprintf("\x1b[8;7H ---------------- ");
 			iprintf("\x1b[9;7H| IRABAZI DUZU!! |");
 			iprintf("\x1b[10;7H ---------------- ");
 			EGOERA = BUKATU;//amaiera
 		}
 	}
-	//iprintf("\x1b[23;7H                ");
 	while (EGOERA == BUKATU)
 	{
 		iprintf("\x1b[23;2HSakatu 'A' menura itzultzeko");
 	}
-	//iprintf("\x1b[11;9H             ");
-	//iprintf("\x1b[12;9H             ");
-	//iprintf("\x1b[13;9H             ");
 	ezabatuPantaila();
 }
 

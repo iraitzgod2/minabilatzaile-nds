@@ -46,8 +46,6 @@ touchPosition PANT_DAT;
 #define BUKATU			2
 #define MENUA			3
 #define JOKOA			4
-#define IRABAZI			5
-#define GALDU			6
 
 extern int EGOERA;
 

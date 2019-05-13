@@ -50,29 +50,11 @@ void tekEten()
 {
 	if (EGOERA == HASTEKO){
 		if (SakatutakoTekla() == A){
-			//ezabatuPantaila();// Aurreko pantailan idatzitakoaren ezabapena
 			EGOERA = MENUA;
 		}
 	}
+
 	if (EGOERA == MENUA){
-		/*
-		if (SakatutakoTekla() == BEHERA && kasilaPY == 88) {
-			kasilaPY = 152;
-		}
-		if (SakatutakoTekla() == BEHERA && kasilaPY == 24) {
-			kasilaPY = 88;
-		}
-		if (SakatutakoTekla() == GORA && kasilaPY == 88) {
-			kasilaPY = 24;
-		}
-		if (SakatutakoTekla() == GORA && kasilaPY == 152) {
-			kasilaPY = 88;
-		}
-		if (SakatutakoTekla() == A && kasilaPY == 24) {
-			ezabatuPantaila();
-			EGOERA = JOKOA;
-		}
-		*/
 		if (SakatutakoTekla() == BEHERA && kasilaPY < 152) {kasilaPY += 64;}
 		if (SakatutakoTekla() == GORA && kasilaPY > 24) {kasilaPY -= 64;}
 		if (SakatutakoTekla() == A)
@@ -81,7 +63,6 @@ void tekEten()
 			switch(kasilaPY)
 			{
 				case 24:
-					//ezabatuPantaila();
 					EGOERA = JOKOA;
 					break;
 
@@ -94,37 +75,6 @@ void tekEten()
 					break;
 			}
 		}
-
-		/*
-		if (SakatutakoTekla() == A && kasilaPY == 88) {
-			ezabatuPantaila();
-			iprintf("\x1b[4;7HBOTOIEN KONTROLA");
-			iprintf("\x1b[5;7H----------------");
-			iprintf("\x1b[7;3H'R'  ------------>  Ebatzi");
-			iprintf("\x1b[9;3H'L'  ----------->  Bandera");
-			iprintf("\x1b[11;3H'GORA'  ----------->  Gora");
-			iprintf("\x1b[13;3H'BEHERA'  ------->  Behera");
-			iprintf("\x1b[15;3H'EZKER'  ----->  Ezkerrera");
-			iprintf("\x1b[17;3H'ESKUBI'  ----->  Eskubira");
-			iprintf("\x1b[19;3H'SELECT'  ------>  Amaiera");
-			iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
-		}
-		if (SakatutakoTekla() == A && kasilaPY == 152){
-			ezabatuPantaila();
-			iprintf("\x1b[4;7H    KREDITUAK   ");
-			iprintf("\x1b[5;7H    ---------   ");
-			iprintf("\x1b[7;3H EHUko Ingeniaritza Infor-");
-			iprintf("\x1b[8;3Hmatika graduko hainbat    ");
-			iprintf("\x1b[9;3Hikaslek burutua izan da.  ");
-			iprintf("\x1b[10;3H'Buscaminas' joko famatua-");
-			iprintf("\x1b[11;3Hren bertsio bat da.       ");
-			iprintf("\x1b[13;3H Jokoaren helburua taula  ");
-			iprintf("\x1b[14;3Hahalik eta azkarren amai- ");
-			iprintf("\x1b[15;3Htzea da, minak ez dauden  ");
-			iprintf("\x1b[16;3Hlaukiak aukeratuz.        ");
-			iprintf("\x1b[23;2H Aurrera egiteko sakatu 'A' ");
-		}
-		*/
 	}	
 
 	if (EGOERA == JOKOA || EGOERA == KONTATZEN)
@@ -137,16 +87,6 @@ void tekEten()
 		kasilaX = (kasilaPX / 16) - 1;
 		kasilaY = (kasilaPY / 16) - 1;
 
-		//if (SakatutakoTekla()==A) {
-		//	ezabatuAukera(2, kasilaPX, kasilaPY);
-		//	erakutsi(kasilaPX, kasilaPY);
-		//	erakutsiAukera(0, kasilaPX, kasilaPY);
-		//	erakutsiZazpi(5, kasilaPX, kasilaPY);
-		//} else if (SakatutakoTekla()==B) {
-		//	banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
-		//	erakutsiAukera(0, kasilaPX, kasilaPY);
-		//}
-
 		if (SakatutakoTekla() == L)
 		{
 			banderaDu(kasilaPX, kasilaPY) ? banderaKendu(kasilaPX, kasilaPY) : banderaJarri(kasilaPX, kasilaPY);
@@ -154,7 +94,6 @@ void tekEten()
 		}
 
 		erakutsiAukera(0, kasilaPX, kasilaPY);
-		//iprintf("\x1b[17;5HSakatutako tekla: %d \nds", SakatutakoTekla());
 	}
 
 	if (EGOERA == KONTATZEN)
@@ -170,6 +109,7 @@ void tekEten()
 			ezabatuSpriteGuztiak();
 			ezabatuPantaila();
 			kontagailua = 0;
+			zenbatBandera=0;
 			EGOERA = MENUA;
 		}
 	}
@@ -181,12 +121,11 @@ void tenpEten()
 
 	if (EGOERA == KONTATZEN)
 	{
-		//iprintf("\x1b[13;5HDenboragailua martxan");
 		seg++;
 		iprintf("\x1b[12;8H Denbora = %d ", seg);
 	}
 	
-	if (EGOERA == BUKATU)
+	if (EGOERA == MENUA)
 	{
 		seg = 0;
 	}

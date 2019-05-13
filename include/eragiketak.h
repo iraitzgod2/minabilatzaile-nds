@@ -1,7 +1,7 @@
 
 #define err 10
 #define zut 10
-#define minaKop 20
+#define minaKop 15
 
 extern int zenbatMina;
 extern int zenbatBandera;

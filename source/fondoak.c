@@ -24,22 +24,6 @@ static const int DMA_CHANNEL = 3;
 
 /* Pantailaratu nahi den grafiko bakoitzerako horrelako prozedura bat idatzi behar da */
 
-void erakutsiAtea() {
-	
-	dmaCopyHalfWords(DMA_CHANNEL,
-                     AteaBitmap, /* Automatikoki sortzen den aldagaia */
-                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
-                     AteaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
-}
-
-void erakutsiAteaIrekita() {
-		
-	dmaCopyHalfWords(DMA_CHANNEL,
-                     AteaIrekitaBitmap, /* Automatikoki sortzen den aldagaia */
-                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
-                     AteaIrekitaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
-}
-
 void erakutsiTaula() {
               
        dmaCopyHalfWords(DMA_CHANNEL,
