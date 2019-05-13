@@ -118,16 +118,22 @@ void tekEten()
 void tenpEten()
 {
 	static int seg = 0;
+	static int min = 0;
 
 	if (EGOERA == KONTATZEN)
 	{
 		seg++;
-		iprintf("\x1b[12;8H Denbora = %d ", seg);
+		if (seg==60){
+			seg = 0;
+			min++;
+		}
+		iprintf("\x1b[12;9H %d min %d seg", min, seg);
 	}
 	
 	if (EGOERA == MENUA)
 	{
 		seg = 0;
+		min = 0;
 	}
 }
 
