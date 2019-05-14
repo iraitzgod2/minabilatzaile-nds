@@ -127,7 +127,7 @@ void tenpEten()
 			seg = 0;
 			min++;
 		}
-		iprintf("\x1b[12;9H %d min %d seg", min, seg);
+		iprintf("\x1b[12;9H %d min %d seg ", min, seg);
 	}
 	
 	if (EGOERA == MENUA)
